@@ -10,18 +10,9 @@ using System.Windows.Forms;
 
 namespace timer {
 	public partial class Main : Form {
-		private List<Task> tasks = new List<Task>();
-		private Task currentTask {
-			get {
-				return this.tasks[0];
-			}
-		}
+		private TaskList taskList;
 
 		private bool haveCurrentTask = false;
-
-		public struct SerializedForm {
-			public Task.SerializedForm[] Tasks;
-		}
 
 		private FileHandler fileHandler;
 
@@ -29,6 +20,7 @@ namespace timer {
 			InitializeComponent();
 			this.fileHandler = FileHandler.Instance;
 
+			this.taskList = new TaskList();
 			this.populateProjects();
 
 			//string json = LitJson.JsonMapper.ToJson(new TimeSpan());
@@ -42,7 +34,7 @@ namespace timer {
 				return;
 			}
 
-			switch (this.currentTask.State) {
+			switch (this.taskList.CurrentTask.State) {
 				case Task.States.NEW:
 					this.buttonStartStop.Text = "Start";
 					this.buttonPause.Enabled = false;
@@ -67,12 +59,12 @@ namespace timer {
 		}
 
 		private void populateProjects() {
-			foreach (Task task in this.tasks) {
-				if (this.comboBoxProject.Items.Contains(task.Project))
-					continue;
-				this.comboBoxProject.Items.Add(task.Project);
+			foreach (string project in this.taskList.Projects) {
+				this.comboBoxProject.Items.Add(project);
 			}
-			this.comboBoxProject.Text = this.tasks[0].Project;
+
+			if (this.taskList.Projects.Count > 0)
+				this.comboBoxProject.Text = this.taskList.Projects[0];
 		}
 
 		private void createTask() {
@@ -81,13 +73,13 @@ namespace timer {
 			// in seconds
 			TimeSpan duration = new TimeSpan(this.dateTimePickerDuration.Value.Hour, this.dateTimePickerDuration.Value.Minute, 0);
 
-			this.tasks.Insert(0, new Task(project, description, duration));
+			this.taskList.AddTask(project, description, duration);
 		}
 
 		private void startTask() {
-			if (this.currentTask == null)
+			if (this.taskList.CurrentTask == null)
 				throw new Exception("No task to start");
-			this.currentTask.Start();
+			this.taskList.StartCurrent();
 			this.haveCurrentTask = true;
 			this.labelDuration.Text = "00:00:00";
 			this.timer.Start();
@@ -95,47 +87,23 @@ namespace timer {
 		}
 
 		private void stopTask() {
-			this.currentTask.Finish();
+			this.taskList.FinishCurrent();
 			this.timer.Stop();
 			this.haveCurrentTask = false;
 			this.setButtonEnabled();
-			this.fileHandler.SaveTasks(this.Serialize());
+			this.fileHandler.SaveTasks(this.taskList.Serialize());
 		}
 
 		private void pauseTask() {
-			this.currentTask.Pause();
+			this.taskList.PauseCurrent();
 			this.timer.Stop();
 			this.setButtonEnabled();
 		}
 
 		private void resumeTask() {
-			this.currentTask.Resume();
+			this.taskList.ResumeCurrnt();
 			this.timer.Start();
 			this.setButtonEnabled();
-		}
-
-		private void buttonStartStop_Click(object sender, EventArgs e) {
-			if (!this.haveCurrentTask) {
-				this.createTask();
-			}
-			switch (this.currentTask.State) {
-				case Task.States.NEW:
-					this.startTask();
-					break;
-				case Task.States.IN_PROGRESS:
-					this.stopTask();
-					break;
-			}
-		}
-
-		public SerializedForm Serialize() {
-			SerializedForm serializedForm = new SerializedForm();
-			List<Task.SerializedForm> tasks = new List<Task.SerializedForm>();
-			foreach (Task task in this.tasks) {
-				tasks.Add(task.Serialize());
-			}
-			serializedForm.Tasks = tasks.ToArray();
-			return serializedForm;
 		}
 
 		private void timer_Tick(object sender, EventArgs e) {
@@ -143,13 +111,28 @@ namespace timer {
 				this.timer.Stop();
 				return;
 			}
-			this.labelDuration.Text = this.currentTask.Duration.ToString("hh':'mm':'ss");
+			this.labelDuration.Text = this.taskList.CurrentTask.Duration.ToString("hh':'mm':'ss");
+		}
+
+		private void buttonStartStop_Click(object sender, EventArgs e) {
+			if (!this.haveCurrentTask) {
+				this.createTask();
+			}
+			switch (this.taskList.CurrentState) {
+				case Task.States.NEW:
+					this.startTask();
+					break;
+				case Task.States.IN_PROGRESS:
+				case Task.States.PAUSED:
+					this.stopTask();
+					break;
+			}
 		}
 
 		private void buttonPause_Click(object sender, EventArgs e) {
 			if (!this.haveCurrentTask)
 				return;
-			switch (this.currentTask.State) {
+			switch (this.taskList.CurrentState) {
 				case Task.States.IN_PROGRESS:
 					this.pauseTask();
 					break;

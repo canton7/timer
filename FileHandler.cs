@@ -21,7 +21,7 @@ namespace timer {
 
 		// End of singleton stuff
 
-		public void SaveTasks(Main.SerializedForm serializedForm) {
+		public void SaveTasks(TaskList.SerializedForm serializedForm) {
 			JsonWriter writer = new JsonWriter();
 			writer.PrettyPrint = true;
 			JsonMapper.ToJson(serializedForm, writer);

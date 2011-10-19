@@ -251,6 +251,5 @@ namespace timer {
 				return;
 			this.deleteTask(this.listBoxTasksContents[index]);
 		}
-
     }
 }

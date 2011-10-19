@@ -31,6 +31,8 @@
 			this.components = new System.ComponentModel.Container();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPageTime = new System.Windows.Forms.TabPage();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
 			this.labelDurationTotal = new System.Windows.Forms.Label();
 			this.labelError = new System.Windows.Forms.Label();
 			this.labelDuration = new System.Windows.Forms.Label();
@@ -41,16 +43,15 @@
 			this.textBoxDescription = new System.Windows.Forms.TextBox();
 			this.comboBoxProject = new System.Windows.Forms.ComboBox();
 			this.tabPageTasks = new System.Windows.Forms.TabPage();
+			this.buttonDeleteTask = new System.Windows.Forms.Button();
+			this.listBoxTasks = new System.Windows.Forms.ListBox();
+			this.buttonEditTask = new System.Windows.Forms.Button();
 			this.labelDurationTotalTasks = new System.Windows.Forms.Label();
+			this.buttonContinueTask = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.comboBoxProjectTasks = new System.Windows.Forms.ComboBox();
 			this.timer = new System.Windows.Forms.Timer(this.components);
-			this.listBoxTasks = new System.Windows.Forms.ListBox();
-			this.buttonContinueTask = new System.Windows.Forms.Button();
-			this.buttonEditTask = new System.Windows.Forms.Button();
-			this.buttonDeleteTask = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabPageTime.SuspendLayout();
 			this.tabPageTasks.SuspendLayout();
@@ -66,12 +67,13 @@
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(264, 250);
+			this.tabControl1.Size = new System.Drawing.Size(237, 234);
 			this.tabControl1.TabIndex = 0;
 			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
 			// tabPageTime
 			// 
+			this.tabPageTime.Controls.Add(this.label5);
 			this.tabPageTime.Controls.Add(this.label4);
 			this.tabPageTime.Controls.Add(this.labelDurationTotal);
 			this.tabPageTime.Controls.Add(this.labelError);
@@ -85,17 +87,38 @@
 			this.tabPageTime.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTime.Name = "tabPageTime";
 			this.tabPageTime.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageTime.Size = new System.Drawing.Size(256, 224);
+			this.tabPageTime.Size = new System.Drawing.Size(229, 208);
 			this.tabPageTime.TabIndex = 0;
 			this.tabPageTime.Text = "Time";
 			this.tabPageTime.UseVisualStyleBackColor = true;
 			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label5.Location = new System.Drawing.Point(10, 182);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(48, 20);
+			this.label5.TabIndex = 13;
+			this.label5.Text = "Total:";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(8, 9);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(43, 13);
+			this.label4.TabIndex = 12;
+			this.label4.Text = "Project:";
+			// 
 			// labelDurationTotal
 			// 
+			this.labelDurationTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelDurationTotal.AutoSize = true;
-			this.labelDurationTotal.Location = new System.Drawing.Point(130, 143);
+			this.labelDurationTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.labelDurationTotal.Location = new System.Drawing.Point(60, 182);
 			this.labelDurationTotal.Name = "labelDurationTotal";
-			this.labelDurationTotal.Size = new System.Drawing.Size(49, 13);
+			this.labelDurationTotal.Size = new System.Drawing.Size(71, 20);
 			this.labelDurationTotal.TabIndex = 11;
 			this.labelDurationTotal.Text = "00:00:00";
 			// 
@@ -103,7 +126,7 @@
 			// 
 			this.labelError.AutoSize = true;
 			this.labelError.ForeColor = System.Drawing.Color.Red;
-			this.labelError.Location = new System.Drawing.Point(8, 175);
+			this.labelError.Location = new System.Drawing.Point(11, 133);
 			this.labelError.Name = "labelError";
 			this.labelError.Size = new System.Drawing.Size(34, 13);
 			this.labelError.TabIndex = 10;
@@ -113,9 +136,10 @@
 			// labelDuration
 			// 
 			this.labelDuration.AutoSize = true;
-			this.labelDuration.Location = new System.Drawing.Point(12, 143);
+			this.labelDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.labelDuration.Location = new System.Drawing.Point(10, 146);
 			this.labelDuration.Name = "labelDuration";
-			this.labelDuration.Size = new System.Drawing.Size(49, 13);
+			this.labelDuration.Size = new System.Drawing.Size(127, 33);
 			this.labelDuration.TabIndex = 8;
 			this.labelDuration.Text = "00:00:00";
 			// 
@@ -141,7 +165,8 @@
 			// 
 			// buttonSave
 			// 
-			this.buttonSave.Location = new System.Drawing.Point(172, 106);
+			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonSave.Location = new System.Drawing.Point(145, 106);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(75, 23);
 			this.buttonSave.TabIndex = 4;
@@ -151,9 +176,10 @@
 			// 
 			// buttonStartStop
 			// 
-			this.buttonStartStop.Location = new System.Drawing.Point(8, 194);
+			this.buttonStartStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.buttonStartStop.Location = new System.Drawing.Point(145, 146);
 			this.buttonStartStop.Name = "buttonStartStop";
-			this.buttonStartStop.Size = new System.Drawing.Size(75, 23);
+			this.buttonStartStop.Size = new System.Drawing.Size(75, 56);
 			this.buttonStartStop.TabIndex = 2;
 			this.buttonStartStop.Text = "Start";
 			this.buttonStartStop.UseVisualStyleBackColor = true;
@@ -161,19 +187,23 @@
 			// 
 			// textBoxDescription
 			// 
+			this.textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxDescription.Location = new System.Drawing.Point(8, 33);
 			this.textBoxDescription.Multiline = true;
 			this.textBoxDescription.Name = "textBoxDescription";
-			this.textBoxDescription.Size = new System.Drawing.Size(239, 67);
+			this.textBoxDescription.Size = new System.Drawing.Size(212, 67);
 			this.textBoxDescription.TabIndex = 1;
 			this.textBoxDescription.Text = "The task at hand";
 			// 
 			// comboBoxProject
 			// 
+			this.comboBoxProject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.comboBoxProject.FormattingEnabled = true;
 			this.comboBoxProject.Location = new System.Drawing.Point(57, 6);
 			this.comboBoxProject.Name = "comboBoxProject";
-			this.comboBoxProject.Size = new System.Drawing.Size(190, 21);
+			this.comboBoxProject.Size = new System.Drawing.Size(163, 21);
 			this.comboBoxProject.TabIndex = 0;
 			this.comboBoxProject.TextChanged += new System.EventHandler(this.comboBoxProject_TextChanged);
 			// 
@@ -190,10 +220,40 @@
 			this.tabPageTasks.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTasks.Name = "tabPageTasks";
 			this.tabPageTasks.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageTasks.Size = new System.Drawing.Size(256, 224);
+			this.tabPageTasks.Size = new System.Drawing.Size(229, 208);
 			this.tabPageTasks.TabIndex = 1;
 			this.tabPageTasks.Text = "Tasks";
 			this.tabPageTasks.UseVisualStyleBackColor = true;
+			// 
+			// buttonDeleteTask
+			// 
+			this.buttonDeleteTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonDeleteTask.Location = new System.Drawing.Point(148, 179);
+			this.buttonDeleteTask.Name = "buttonDeleteTask";
+			this.buttonDeleteTask.Size = new System.Drawing.Size(75, 23);
+			this.buttonDeleteTask.TabIndex = 1;
+			this.buttonDeleteTask.Text = "Delete";
+			this.buttonDeleteTask.UseVisualStyleBackColor = true;
+			this.buttonDeleteTask.Click += new System.EventHandler(this.buttonDeleteTask_Click);
+			// 
+			// listBoxTasks
+			// 
+			this.listBoxTasks.FormattingEnabled = true;
+			this.listBoxTasks.Location = new System.Drawing.Point(3, 67);
+			this.listBoxTasks.Name = "listBoxTasks";
+			this.listBoxTasks.Size = new System.Drawing.Size(223, 95);
+			this.listBoxTasks.TabIndex = 4;
+			// 
+			// buttonEditTask
+			// 
+			this.buttonEditTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonEditTask.Location = new System.Drawing.Point(83, 179);
+			this.buttonEditTask.Name = "buttonEditTask";
+			this.buttonEditTask.Size = new System.Drawing.Size(59, 23);
+			this.buttonEditTask.TabIndex = 1;
+			this.buttonEditTask.Text = "Edit";
+			this.buttonEditTask.UseVisualStyleBackColor = true;
+			this.buttonEditTask.Click += new System.EventHandler(this.buttonEditTask_Click);
 			// 
 			// labelDurationTotalTasks
 			// 
@@ -203,6 +263,17 @@
 			this.labelDurationTotalTasks.Size = new System.Drawing.Size(49, 13);
 			this.labelDurationTotalTasks.TabIndex = 3;
 			this.labelDurationTotalTasks.Text = "00:00:00";
+			// 
+			// buttonContinueTask
+			// 
+			this.buttonContinueTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonContinueTask.Location = new System.Drawing.Point(6, 179);
+			this.buttonContinueTask.Name = "buttonContinueTask";
+			this.buttonContinueTask.Size = new System.Drawing.Size(71, 23);
+			this.buttonContinueTask.TabIndex = 1;
+			this.buttonContinueTask.Text = "Continue";
+			this.buttonContinueTask.UseVisualStyleBackColor = true;
+			this.buttonContinueTask.Click += new System.EventHandler(this.buttonContinueTask_Click);
 			// 
 			// label3
 			// 
@@ -237,58 +308,11 @@
 			this.timer.Interval = 1000;
 			this.timer.Tick += new System.EventHandler(this.timer_Tick);
 			// 
-			// listBoxTasks
-			// 
-			this.listBoxTasks.FormattingEnabled = true;
-			this.listBoxTasks.Location = new System.Drawing.Point(3, 67);
-			this.listBoxTasks.Name = "listBoxTasks";
-			this.listBoxTasks.Size = new System.Drawing.Size(250, 121);
-			this.listBoxTasks.TabIndex = 4;
-			// 
-			// buttonContinueTask
-			// 
-			this.buttonContinueTask.Location = new System.Drawing.Point(6, 194);
-			this.buttonContinueTask.Name = "buttonContinueTask";
-			this.buttonContinueTask.Size = new System.Drawing.Size(75, 23);
-			this.buttonContinueTask.TabIndex = 1;
-			this.buttonContinueTask.Text = "Continue";
-			this.buttonContinueTask.UseVisualStyleBackColor = true;
-			this.buttonContinueTask.Click += new System.EventHandler(this.buttonContinueTask_Click);
-			// 
-			// buttonEditTask
-			// 
-			this.buttonEditTask.Location = new System.Drawing.Point(87, 194);
-			this.buttonEditTask.Name = "buttonEditTask";
-			this.buttonEditTask.Size = new System.Drawing.Size(75, 23);
-			this.buttonEditTask.TabIndex = 1;
-			this.buttonEditTask.Text = "Edit";
-			this.buttonEditTask.UseVisualStyleBackColor = true;
-			this.buttonEditTask.Click += new System.EventHandler(this.buttonEditTask_Click);
-			// 
-			// buttonDeleteTask
-			// 
-			this.buttonDeleteTask.Location = new System.Drawing.Point(168, 194);
-			this.buttonDeleteTask.Name = "buttonDeleteTask";
-			this.buttonDeleteTask.Size = new System.Drawing.Size(75, 23);
-			this.buttonDeleteTask.TabIndex = 1;
-			this.buttonDeleteTask.Text = "Delete";
-			this.buttonDeleteTask.UseVisualStyleBackColor = true;
-			this.buttonDeleteTask.Click += new System.EventHandler(this.buttonDeleteTask_Click);
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(8, 9);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(43, 13);
-			this.label4.TabIndex = 12;
-			this.label4.Text = "Project:";
-			// 
 			// Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(263, 251);
+			this.ClientSize = new System.Drawing.Size(236, 235);
 			this.Controls.Add(this.tabControl1);
 			this.Name = "Main";
 			this.Text = "Timer";
@@ -326,6 +350,7 @@
 		private System.Windows.Forms.Button buttonEditTask;
 		private System.Windows.Forms.Button buttonDeleteTask;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label5;
     }
 }
 

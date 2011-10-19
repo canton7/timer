@@ -118,7 +118,7 @@
 			this.dateTimePickerDuration.ShowUpDown = true;
 			this.dateTimePickerDuration.Size = new System.Drawing.Size(75, 20);
 			this.dateTimePickerDuration.TabIndex = 7;
-			this.dateTimePickerDuration.Value = new System.DateTime(2011, 10, 19, 0, 0, 0, 0);
+			this.dateTimePickerDuration.Value = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
 			// 
 			// buttonDeleteWorkTime
 			// 

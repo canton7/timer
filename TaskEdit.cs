@@ -73,6 +73,8 @@ namespace timer {
 
 		private void listBoxWorkTimes_SelectedIndexChanged(object sender, EventArgs e) {
 			int index = (sender as ListBox).SelectedIndex;
+			if (index == -1)
+				return;
 			this.populateFromDuration(this.task.WorkTimes[index]);
 		}
 

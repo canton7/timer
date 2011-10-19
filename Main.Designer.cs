@@ -50,6 +50,7 @@
 			this.buttonContinueTask = new System.Windows.Forms.Button();
 			this.buttonEditTask = new System.Windows.Forms.Button();
 			this.buttonDeleteTask = new System.Windows.Forms.Button();
+			this.label4 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabPageTime.SuspendLayout();
 			this.tabPageTasks.SuspendLayout();
@@ -71,6 +72,7 @@
 			// 
 			// tabPageTime
 			// 
+			this.tabPageTime.Controls.Add(this.label4);
 			this.tabPageTime.Controls.Add(this.labelDurationTotal);
 			this.tabPageTime.Controls.Add(this.labelError);
 			this.tabPageTime.Controls.Add(this.labelDuration);
@@ -120,7 +122,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(9, 106);
+			this.label1.Location = new System.Drawing.Point(9, 109);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(47, 13);
 			this.label1.TabIndex = 7;
@@ -169,9 +171,9 @@
 			// comboBoxProject
 			// 
 			this.comboBoxProject.FormattingEnabled = true;
-			this.comboBoxProject.Location = new System.Drawing.Point(8, 6);
+			this.comboBoxProject.Location = new System.Drawing.Point(57, 6);
 			this.comboBoxProject.Name = "comboBoxProject";
-			this.comboBoxProject.Size = new System.Drawing.Size(239, 21);
+			this.comboBoxProject.Size = new System.Drawing.Size(190, 21);
 			this.comboBoxProject.TabIndex = 0;
 			this.comboBoxProject.TextChanged += new System.EventHandler(this.comboBoxProject_TextChanged);
 			// 
@@ -261,6 +263,7 @@
 			this.buttonEditTask.TabIndex = 1;
 			this.buttonEditTask.Text = "Edit";
 			this.buttonEditTask.UseVisualStyleBackColor = true;
+			this.buttonEditTask.Click += new System.EventHandler(this.buttonEditTask_Click);
 			// 
 			// buttonDeleteTask
 			// 
@@ -271,6 +274,15 @@
 			this.buttonDeleteTask.Text = "Delete";
 			this.buttonDeleteTask.UseVisualStyleBackColor = true;
 			this.buttonDeleteTask.Click += new System.EventHandler(this.buttonDeleteTask_Click);
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(8, 9);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(43, 13);
+			this.label4.TabIndex = 12;
+			this.label4.Text = "Project:";
 			// 
 			// Main
 			// 
@@ -313,6 +325,7 @@
 		private System.Windows.Forms.Button buttonContinueTask;
 		private System.Windows.Forms.Button buttonEditTask;
 		private System.Windows.Forms.Button buttonDeleteTask;
+		private System.Windows.Forms.Label label4;
     }
 }
 

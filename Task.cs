@@ -20,6 +20,9 @@ namespace timer {
 		}
 
 		private List<WorkTime> workTimes = new List<WorkTime>();
+		public List<WorkTime> WorkTimes {
+			get { return this.workTimes; }
+		}
 
 		private TimeSpan finishedDuration;
 
@@ -95,6 +98,10 @@ namespace timer {
 			this.state = States.STOPPED;
 			this.workTimes[0].StoppedAt = DateTime.Now;
 			this.finishedDuration += DateTime.Now - this.workTimes[0].StartedAt;
+		}
+
+		public void DeleteWorkTime(WorkTime workTime) {
+			this.workTimes.Remove(workTime);
 		}
 
 		public SerializedForm Serialize() {

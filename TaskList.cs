@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace timer {
-	class TaskList {
+	public class TaskList {
 		private List<Task> tasks = new List<Task>();
 		public List<Task> Tasks {
 			get { return this.tasks; }

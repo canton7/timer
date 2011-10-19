@@ -149,6 +149,12 @@ namespace timer {
 			this.fileHandler.SaveTasks(this.taskList.Serialize());
 		}
 
+		private void editTask(Task task) {
+			using (TaskEdit taskEdit = new TaskEdit(this.taskList, task)) {
+				taskEdit.ShowDialog();
+			}
+		}
+
 		private void timer_Tick(object sender, EventArgs e) {
 			if (!this.haveCurrentTask) {
 				this.timer.Stop();
@@ -214,9 +220,15 @@ namespace timer {
 			this.tabControl1.SelectedIndex = 0;
 		}
 
+		private void buttonEditTask_Click(object sender, EventArgs e) {
+			int index = this.listBoxTasks.SelectedIndex;
+			this.editTask(this.listBoxTasksContents[index]);
+		}
+
 		private void buttonDeleteTask_Click(object sender, EventArgs e) {
 			int index = this.listBoxTasks.SelectedIndex;
 			this.deleteTask(this.listBoxTasksContents[index]);
 		}
+
     }
 }

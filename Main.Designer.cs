@@ -37,7 +37,6 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.dateTimePickerDuration = new System.Windows.Forms.DateTimePicker();
 			this.buttonSave = new System.Windows.Forms.Button();
-			this.buttonPause = new System.Windows.Forms.Button();
 			this.buttonStartStop = new System.Windows.Forms.Button();
 			this.textBoxDescription = new System.Windows.Forms.TextBox();
 			this.comboBoxProject = new System.Windows.Forms.ComboBox();
@@ -75,7 +74,6 @@
 			this.tabPageTime.Controls.Add(this.label1);
 			this.tabPageTime.Controls.Add(this.dateTimePickerDuration);
 			this.tabPageTime.Controls.Add(this.buttonSave);
-			this.tabPageTime.Controls.Add(this.buttonPause);
 			this.tabPageTime.Controls.Add(this.buttonStartStop);
 			this.tabPageTime.Controls.Add(this.textBoxDescription);
 			this.tabPageTime.Controls.Add(this.comboBoxProject);
@@ -144,17 +142,6 @@
 			this.buttonSave.TabIndex = 4;
 			this.buttonSave.Text = "Save";
 			this.buttonSave.UseVisualStyleBackColor = true;
-			// 
-			// buttonPause
-			// 
-			this.buttonPause.Enabled = false;
-			this.buttonPause.Location = new System.Drawing.Point(90, 194);
-			this.buttonPause.Name = "buttonPause";
-			this.buttonPause.Size = new System.Drawing.Size(75, 23);
-			this.buttonPause.TabIndex = 3;
-			this.buttonPause.Text = "Pause";
-			this.buttonPause.UseVisualStyleBackColor = true;
-			this.buttonPause.Click += new System.EventHandler(this.buttonPause_Click);
 			// 
 			// buttonStartStop
 			// 
@@ -271,7 +258,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageTime;
 		private System.Windows.Forms.TabPage tabPageTasks;
-		private System.Windows.Forms.Button buttonPause;
 		private System.Windows.Forms.Button buttonStartStop;
 		private System.Windows.Forms.TextBox textBoxDescription;
 		private System.Windows.Forms.DateTimePicker dateTimePickerDuration;

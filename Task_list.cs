@@ -65,16 +65,8 @@ namespace timer {
 			this.tasks[0].Start();
 		}
 
-		public void FinishCurrent() {
-			this.tasks[0].Finish();
-		}
-
-		public void PauseCurrent() {
-			this.tasks[0].Pause();
-		}
-
-		public void ResumeCurrnt() {
-			this.tasks[0].Resume();
+		public void StopCurrent() {
+			this.tasks[0].Stop();
 		}
 
 		private TimeSpan calcCurrentProjectFinishedTime() {

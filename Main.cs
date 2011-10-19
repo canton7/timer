@@ -29,28 +29,17 @@ namespace timer {
 		private void setButtonEnabled() {
 			if (!this.haveCurrentTask) {
 				this.buttonStartStop.Text = "Start";
-				this.buttonPause.Enabled = false;
 				this.buttonSave.Enabled = true;
 				return;
 			}
 
-			switch (this.taskList.CurrentTask.State) {
-				case Task.States.NEW:
+			switch (this.taskList.CurrentState) {
+				case Task.States.STOPPED:
 					this.buttonStartStop.Text = "Start";
-					this.buttonPause.Enabled = false;
-					this.buttonPause.Text = "Pause";
 					this.buttonSave.Enabled = true;
 					break;
 				case Task.States.IN_PROGRESS:
 					this.buttonStartStop.Text = "Stop";
-					this.buttonPause.Enabled = true;
-					this.buttonPause.Text = "Pause";
-					this.buttonSave.Enabled = false;
-					break;
-				case Task.States.PAUSED:
-					this.buttonStartStop.Text = "Stop";
-					this.buttonPause.Enabled = true;
-					this.buttonPause.Text = "Resume";
 					this.buttonSave.Enabled = false;
 					break;
 				default:
@@ -102,23 +91,11 @@ namespace timer {
 		}
 
 		private void stopTask() {
-			this.taskList.FinishCurrent();
+			this.taskList.StopCurrent();
 			this.timer.Stop();
 			this.haveCurrentTask = false;
 			this.setButtonEnabled();
 			this.fileHandler.SaveTasks(this.taskList.Serialize());
-		}
-
-		private void pauseTask() {
-			this.taskList.PauseCurrent();
-			this.timer.Stop();
-			this.setButtonEnabled();
-		}
-
-		private void resumeTask() {
-			this.taskList.ResumeCurrnt();
-			this.timer.Start();
-			this.setButtonEnabled();
 		}
 
 		private void populateTaskList() {
@@ -151,25 +128,11 @@ namespace timer {
 					return;
 			}
 			switch (this.taskList.CurrentState) {
-				case Task.States.NEW:
+				case Task.States.STOPPED:
 					this.startTask();
 					break;
 				case Task.States.IN_PROGRESS:
-				case Task.States.PAUSED:
 					this.stopTask();
-					break;
-			}
-		}
-
-		private void buttonPause_Click(object sender, EventArgs e) {
-			if (!this.haveCurrentTask)
-				return;
-			switch (this.taskList.CurrentState) {
-				case Task.States.IN_PROGRESS:
-					this.pauseTask();
-					break;
-				case Task.States.PAUSED:
-					this.resumeTask();
 					break;
 			}
 		}

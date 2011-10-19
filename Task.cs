@@ -13,7 +13,7 @@ namespace timer {
 			get; set;
 		}
 
-		public enum States { NEW, IN_PROGRESS, PAUSED, FINISHED };
+		public enum States { IN_PROGRESS, STOPPED };
 		private States state;
 		public States State {
 			get { return this.state; }
@@ -36,74 +36,61 @@ namespace timer {
 			public string Project;
 			public string Description;
 			public string ExpectedTime;
+			public States State;
 			public WorkTime.SerializedForm[] WorkTimes;
 		}
 
 		public class WorkTime {
 			public DateTime StartedAt;
-			public DateTime? FinishedAt;
+			public DateTime? StoppedAt;
 
 			public TimeSpan Duration {
-				get { return this.FinishedAt.Value - this.StartedAt; }
+				get { return this.StoppedAt.Value - this.StartedAt; }
 			}
 
 			public struct SerializedForm {
 				public string StartedAt;
-				public string FinishedAt;
+				public string StoppedAt;
 			}
 
 			public WorkTime() {
 				this.StartedAt = DateTime.Now;
-				this.FinishedAt = null;
+				this.StoppedAt = null;
 			}
 			public WorkTime(SerializedForm serializedForm) {
 				this.StartedAt = DateTime.Parse(serializedForm.StartedAt);
-				this.FinishedAt = DateTime.Parse(serializedForm.FinishedAt);
+				this.StoppedAt = DateTime.Parse(serializedForm.StoppedAt);
 			}
 
 			public SerializedForm Serialize() {
 				return new SerializedForm {
 					StartedAt = this.StartedAt.ToString(),
-					FinishedAt = this.FinishedAt.Value.ToString(),
+					StoppedAt = this.StoppedAt.Value.ToString(),
 				};
 			}
 		}
 
 		public Task(string project, string desciption, TimeSpan expectedTime) {
 			// Used to create a new task
-			this.state = States.NEW;
+			this.state = States.STOPPED;
 			this.Project = project;
 			this.Description = desciption;
 			this.expectedTime = expectedTime;
 		}
 
 		public Task(SerializedForm serializedForm) {
-			this.state = States.FINISHED;
 			this.Unserialize(serializedForm);
 		}
 
 		public void Start() {
-			if (this.state != States.NEW)
-				throw new Exception("Can't start a task that isn't NEW");
 			this.state = States.IN_PROGRESS;
 			this.workTimes.Insert(0, new WorkTime());
 		}
 
-		public void Finish() {
-			this.state = States.FINISHED;
-			this.workTimes[0].FinishedAt = DateTime.Now;
+		public void Stop() {
+			this.state = States.STOPPED;
+			this.workTimes[0].StoppedAt = DateTime.Now;
 			this.finishedDuration += DateTime.Now - this.workTimes[0].StartedAt;
-		}
-
-		public void Pause() {
-			this.state = States.PAUSED;
-			this.workTimes[0].FinishedAt = DateTime.Now;
-			this.finishedDuration += DateTime.Now - this.workTimes[0].StartedAt;
-		}
-
-		public void Resume() {
-			this.state = States.IN_PROGRESS;
-			this.workTimes.Insert(0, new WorkTime());
 		}
 
 		public SerializedForm Serialize() {
@@ -111,6 +98,7 @@ namespace timer {
 			serializedForm.Project = this.Project;
 			serializedForm.Description = this.Description;
 			serializedForm.ExpectedTime = this.expectedTime.ToString("hh':'mm");
+			serializedForm.State = this.state;
 			List<WorkTime.SerializedForm> workTimes = new List<WorkTime.SerializedForm>();
 			foreach (WorkTime workTime in this.workTimes) {
 				workTimes.Add(workTime.Serialize());
@@ -122,6 +110,7 @@ namespace timer {
 		public void Unserialize(SerializedForm serializedForm) {
 			this.Project = serializedForm.Project;
 			this.Description = serializedForm.Description;
+			this.state = serializedForm.State;
 			string[] parts = serializedForm.ExpectedTime.Split(':');
 			this.expectedTime = new TimeSpan(int.Parse(parts[0]), int.Parse(parts[1]), 0);
 			foreach (WorkTime.SerializedForm serializedWork in serializedForm.WorkTimes) {

@@ -23,10 +23,11 @@ namespace timer {
 			public Task.SerializedForm[] Tasks;
 		}
 
+		private FileHandler fileHandler;
+
 		public Main() {
 			InitializeComponent();
-
-			this.tasks.Add(new Task("GDP", "Some Task", new TimeSpan()));
+			this.fileHandler = FileHandler.Instance;
 
 			this.populateProjects();
 
@@ -98,7 +99,7 @@ namespace timer {
 			this.timer.Stop();
 			this.haveCurrentTask = false;
 			this.setButtonEnabled();
-			string json = LitJson.JsonMapper.ToJson(this.tasks[0].Serialize());
+			this.fileHandler.SaveTasks(this.Serialize());
 		}
 
 		private void pauseTask() {

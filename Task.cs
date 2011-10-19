@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace timer {
-	class Task {
+	public class Task {
 		//private string project;
 		public string Project {
 			get; set;

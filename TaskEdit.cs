@@ -49,7 +49,12 @@ namespace timer {
 		private void editWorkTime(Task.WorkTime workTime) {
 			workTime.StartedAt = this.dateTimePickerFrom.Value;
 			workTime.StoppedAt = this.dateTimePickerFrom.Value + (this.dateTimePickerDuration.Value - new DateTime(1970, 1, 1, 0, 0, 0));
+			this.task.SortWorkTimes();
 			this.populateFields();
+			// Find the moved task, and select
+			int index = this.task.WorkTimes.FindIndex(x => x.StartedAt == workTime.StartedAt && x.StoppedAt == workTime.StoppedAt);
+			this.listBoxWorkTimes.SelectedIndex = index;
+
 		}
 
 		private void listBoxWorkTimes_SelectedIndexChanged(object sender, EventArgs e) {

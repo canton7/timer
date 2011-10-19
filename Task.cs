@@ -100,6 +100,10 @@ namespace timer {
 			this.finishedDuration += DateTime.Now - this.workTimes[0].StartedAt;
 		}
 
+		public void SortWorkTimes() {
+			this.workTimes = this.workTimes.OrderByDescending(x => x.StartedAt).ToList();
+		}
+
 		public void DeleteWorkTime(WorkTime workTime) {
 			this.workTimes.Remove(workTime);
 		}

@@ -64,7 +64,7 @@
 			this.textBoxDescription.Location = new System.Drawing.Point(12, 73);
 			this.textBoxDescription.Multiline = true;
 			this.textBoxDescription.Name = "textBoxDescription";
-			this.textBoxDescription.Size = new System.Drawing.Size(253, 58);
+			this.textBoxDescription.Size = new System.Drawing.Size(252, 58);
 			this.textBoxDescription.TabIndex = 3;
 			this.textBoxDescription.Text = "The task at hand";
 			// 
@@ -76,7 +76,7 @@
 			this.listBoxWorkTimes.FormattingEnabled = true;
 			this.listBoxWorkTimes.Location = new System.Drawing.Point(12, 137);
 			this.listBoxWorkTimes.Name = "listBoxWorkTimes";
-			this.listBoxWorkTimes.Size = new System.Drawing.Size(253, 95);
+			this.listBoxWorkTimes.Size = new System.Drawing.Size(252, 95);
 			this.listBoxWorkTimes.TabIndex = 4;
 			this.listBoxWorkTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxWorkTimes_SelectedIndexChanged);
 			// 
@@ -205,7 +205,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.buttonCancel;
-			this.ClientSize = new System.Drawing.Size(277, 385);
+			this.ClientSize = new System.Drawing.Size(276, 385);
 			this.Controls.Add(this.buttonCancel);
 			this.Controls.Add(this.buttonSave);
 			this.Controls.Add(this.buttonNew);

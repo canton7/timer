@@ -68,7 +68,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(237, 235);
+			this.tabControl1.Size = new System.Drawing.Size(238, 235);
 			this.tabControl1.TabIndex = 0;
 			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
@@ -171,7 +171,7 @@
 			// 
 			// buttonSave
 			// 
-			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonSave.Location = new System.Drawing.Point(145, 106);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(75, 23);
@@ -182,7 +182,7 @@
 			// 
 			// buttonStartStop
 			// 
-			this.buttonStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.buttonStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonStartStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.buttonStartStop.Location = new System.Drawing.Point(145, 146);
 			this.buttonStartStop.Name = "buttonStartStop";
@@ -228,7 +228,7 @@
 			this.tabPageTasks.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTasks.Name = "tabPageTasks";
 			this.tabPageTasks.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageTasks.Size = new System.Drawing.Size(229, 209);
+			this.tabPageTasks.Size = new System.Drawing.Size(230, 209);
 			this.tabPageTasks.TabIndex = 1;
 			this.tabPageTasks.Text = "Tasks";
 			this.tabPageTasks.UseVisualStyleBackColor = true;
@@ -246,10 +246,13 @@
 			// 
 			// listBoxTasks
 			// 
+			this.listBoxTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.listBoxTasks.FormattingEnabled = true;
 			this.listBoxTasks.Location = new System.Drawing.Point(3, 67);
 			this.listBoxTasks.Name = "listBoxTasks";
-			this.listBoxTasks.Size = new System.Drawing.Size(223, 95);
+			this.listBoxTasks.Size = new System.Drawing.Size(224, 95);
 			this.listBoxTasks.TabIndex = 4;
 			// 
 			// buttonEditTask
@@ -322,14 +325,14 @@
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.progressBar.Location = new System.Drawing.Point(2, 236);
 			this.progressBar.Name = "progressBar";
-			this.progressBar.Size = new System.Drawing.Size(231, 10);
+			this.progressBar.Size = new System.Drawing.Size(230, 10);
 			this.progressBar.TabIndex = 14;
 			// 
 			// Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(236, 247);
+			this.ClientSize = new System.Drawing.Size(235, 247);
 			this.Controls.Add(this.progressBar);
 			this.Controls.Add(this.tabControl1);
 			this.Name = "Main";

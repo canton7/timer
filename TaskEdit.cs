@@ -46,6 +46,12 @@ namespace timer {
 			this.populateFields();
 		}
 
+		private void editWorkTime(Task.WorkTime workTime) {
+			workTime.StartedAt = this.dateTimePickerFrom.Value;
+			workTime.StoppedAt = this.dateTimePickerFrom.Value + (this.dateTimePickerDuration.Value - new DateTime(1970, 1, 1, 0, 0, 0));
+			this.populateFields();
+		}
+
 		private void listBoxWorkTimes_SelectedIndexChanged(object sender, EventArgs e) {
 			int index = (sender as ListBox).SelectedIndex;
 			this.populateFromDuration(this.task.WorkTimes[index]);
@@ -53,6 +59,10 @@ namespace timer {
 
 		private void buttonDeleteWorkTime_Click(object sender, EventArgs e) {
 			this.deleteWorkTime(this.task.WorkTimes[this.listBoxWorkTimes.SelectedIndex]);
+		}
+
+		private void buttonEdit_Click(object sender, EventArgs e) {
+			this.editWorkTime(this.task.WorkTimes[this.listBoxWorkTimes.SelectedIndex]);
 		}
 	}
 }

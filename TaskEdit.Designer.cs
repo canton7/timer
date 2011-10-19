@@ -32,6 +32,7 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.dateTimePickerDuration = new System.Windows.Forms.DateTimePicker();
 			this.buttonDeleteWorkTime = new System.Windows.Forms.Button();
+			this.buttonEdit = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// comboBoxProject
@@ -122,11 +123,22 @@
 			this.buttonDeleteWorkTime.UseVisualStyleBackColor = true;
 			this.buttonDeleteWorkTime.Click += new System.EventHandler(this.buttonDeleteWorkTime_Click);
 			// 
+			// buttonEdit
+			// 
+			this.buttonEdit.Location = new System.Drawing.Point(7, 252);
+			this.buttonEdit.Name = "buttonEdit";
+			this.buttonEdit.Size = new System.Drawing.Size(75, 23);
+			this.buttonEdit.TabIndex = 8;
+			this.buttonEdit.Text = "Edit";
+			this.buttonEdit.UseVisualStyleBackColor = true;
+			this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+			// 
 			// TaskEdit
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(283, 285);
+			this.Controls.Add(this.buttonEdit);
 			this.Controls.Add(this.buttonDeleteWorkTime);
 			this.Controls.Add(this.dateTimePickerDuration);
 			this.Controls.Add(this.label3);
@@ -154,5 +166,6 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.DateTimePicker dateTimePickerDuration;
 		private System.Windows.Forms.Button buttonDeleteWorkTime;
+		private System.Windows.Forms.Button buttonEdit;
 	}
 }

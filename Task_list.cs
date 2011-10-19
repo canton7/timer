@@ -26,6 +26,9 @@ namespace timer {
 		public List<string> Projects {
 			get { return this.projects; }
 		}
+		public string CurrentProject {
+			get { return (this.tasks.Count > 0) ? this.tasks[0].Project : ""; }
+		}
 
 		public struct SerializedForm {
 			public Task.SerializedForm[] Tasks;

@@ -59,12 +59,11 @@ namespace timer {
 		}
 
 		private void populateProjects() {
+			this.comboBoxProject.Text = this.taskList.CurrentProject;
+
 			foreach (string project in this.taskList.Projects) {
 				this.comboBoxProject.Items.Add(project);
 			}
-
-			if (this.taskList.Projects.Count > 0)
-				this.comboBoxProject.Text = this.taskList.Projects[0];
 		}
 
 		private bool createTask() {
@@ -87,6 +86,7 @@ namespace timer {
 			this.labelError.Visible = false;
 
 			this.taskList.AddTask(project, description, duration);
+			this.populateProjects();
 			return true;
 		}
 

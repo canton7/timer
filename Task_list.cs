@@ -57,7 +57,7 @@ namespace timer {
 		public void AddTask(string project, string description, TimeSpan duration) {
 			this.tasks.Insert(0, new Task(project, description, duration));
 			if (!this.projects.Contains(project))
-				this.projects.Add(project);
+				this.projects.Insert(0, project);
 			this.currentProjectFinishedTime = this.calcCurrentProjectFinishedTime();
 		}
 

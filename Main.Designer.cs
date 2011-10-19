@@ -44,7 +44,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(263, 252);
+            this.tabControl1.Size = new System.Drawing.Size(264, 252);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPageTime
@@ -52,7 +52,7 @@
             this.tabPageTime.Location = new System.Drawing.Point(4, 22);
             this.tabPageTime.Name = "tabPageTime";
             this.tabPageTime.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTime.Size = new System.Drawing.Size(255, 226);
+            this.tabPageTime.Size = new System.Drawing.Size(256, 226);
             this.tabPageTime.TabIndex = 0;
             this.tabPageTime.Text = "Time";
             this.tabPageTime.UseVisualStyleBackColor = true;

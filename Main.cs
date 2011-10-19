@@ -121,6 +121,21 @@ namespace timer {
 			this.setButtonEnabled();
 		}
 
+		private void populateTaskList() {
+			string project = this.comboBoxProjectTasks.Text;
+
+			this.listBoxTasks.Items.Clear();
+			string item;
+			foreach (Task task in this.taskList.GetProjectTasks(project)) {
+				if (task.ExpectedTime.Ticks == 0)
+					item = String.Format("{0} - {1}", task.Duration.ToString("hh':'mm':'ss"), task.Description);
+				else
+					item = String.Format("{0}/{1} - {2}", task.Duration.ToString("hh':'mm':'ss"), task.ExpectedTime.ToString("hh':'mm"), task.Description);
+
+				this.listBoxTasks.Items.Add(item);
+			}
+		}
+
 		private void timer_Tick(object sender, EventArgs e) {
 			if (!this.haveCurrentTask) {
 				this.timer.Stop();
@@ -179,6 +194,7 @@ namespace timer {
 		private void comboBoxProjectTasks_SelectedIndexChanged(object sender, EventArgs e) {
 			ComboBox senderbox = sender as ComboBox;
 			this.labelDurationTotalTasks.Text = this.taskList.GetProjectTime(senderbox.Text).ToString("hh':'mm':'ss");
+			this.populateTaskList();
 		}
     }
 }

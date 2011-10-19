@@ -47,6 +47,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.comboBoxProjectTasks = new System.Windows.Forms.ComboBox();
 			this.timer = new System.Windows.Forms.Timer(this.components);
+			this.listBoxTasks = new System.Windows.Forms.ListBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPageTime.SuspendLayout();
 			this.tabPageTasks.SuspendLayout();
@@ -185,6 +186,7 @@
 			// 
 			// tabPageTasks
 			// 
+			this.tabPageTasks.Controls.Add(this.listBoxTasks);
 			this.tabPageTasks.Controls.Add(this.labelDurationTotalTasks);
 			this.tabPageTasks.Controls.Add(this.label3);
 			this.tabPageTasks.Controls.Add(this.label2);
@@ -239,6 +241,14 @@
 			this.timer.Interval = 1000;
 			this.timer.Tick += new System.EventHandler(this.timer_Tick);
 			// 
+			// listBoxTasks
+			// 
+			this.listBoxTasks.FormattingEnabled = true;
+			this.listBoxTasks.Location = new System.Drawing.Point(3, 67);
+			this.listBoxTasks.Name = "listBoxTasks";
+			this.listBoxTasks.Size = new System.Drawing.Size(250, 160);
+			this.listBoxTasks.TabIndex = 4;
+			// 
 			// Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,6 +286,7 @@
 		private System.Windows.Forms.Label labelDurationTotal;
 		private System.Windows.Forms.Label labelDurationTotalTasks;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.ListBox listBoxTasks;
     }
 }
 

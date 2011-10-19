@@ -100,6 +100,16 @@ namespace timer {
 			return timespan;
 		}
 
+		public Task[] GetProjectTasks(string project) {
+			List<Task> tasks = new List<Task>();
+			foreach (Task task in this.tasks) {
+				if (task.Project != project)
+					continue;
+				tasks.Add(task);
+			}
+			return tasks.ToArray();
+		}
+
 		public SerializedForm Serialize() {
 			SerializedForm serializedForm = new SerializedForm();
 			List<Task.SerializedForm> tasks = new List<Task.SerializedForm>();

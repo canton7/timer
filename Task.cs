@@ -28,6 +28,9 @@ namespace timer {
 		}
 
 		private TimeSpan expectedTime;
+		public TimeSpan ExpectedTime {
+			get { return this.expectedTime; }
+		}
 
 		public struct SerializedForm {
 			public string Project;

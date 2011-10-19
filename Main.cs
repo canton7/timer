@@ -72,6 +72,10 @@ namespace timer {
 
 			this.labelError.Visible = false;
 
+			// Assume they just want to continue the current task, if they didn't change it
+			if (project == this.taskList.CurrentTask.Project && description == this.taskList.CurrentTask.Description)
+				return true;
+
 			this.taskList.AddTask(project, description, duration);
 			this.populateProjects();
 			return true;
@@ -82,7 +86,7 @@ namespace timer {
 				throw new Exception("No task to start");
 			this.taskList.StartCurrent();
 			this.haveCurrentTask = true;
-			this.labelDuration.Text = "00:00:00";
+			this.labelDuration.Text = this.taskList.CurrentTask.Duration.ToString("hh':'mm':'ss");
 			this.timer.Start();
 			this.setButtonEnabled();
 		}
@@ -108,6 +112,11 @@ namespace timer {
 
 				this.listBoxTasks.Items.Add(item);
 			}
+		}
+
+		private void continueTask(Task task) {
+			this.stopTask();
+
 		}
 
 		private void timer_Tick(object sender, EventArgs e) {
@@ -167,6 +176,10 @@ namespace timer {
 		private void Main_FormClosing(object sender, FormClosingEventArgs e) {
 			// Also causes the current task to save
 			this.stopTask();
+		}
+
+		private void buttonContinueTask_Click(object sender, EventArgs e) {
+
 		}
     }
 }

@@ -47,6 +47,9 @@
 			this.comboBoxProjectTasks = new System.Windows.Forms.ComboBox();
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.listBoxTasks = new System.Windows.Forms.ListBox();
+			this.buttonContinueTask = new System.Windows.Forms.Button();
+			this.buttonEditTask = new System.Windows.Forms.Button();
+			this.buttonDeleteTask = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
 			this.tabPageTime.SuspendLayout();
 			this.tabPageTasks.SuspendLayout();
@@ -62,7 +65,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(264, 252);
+			this.tabControl1.Size = new System.Drawing.Size(264, 250);
 			this.tabControl1.TabIndex = 0;
 			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
@@ -80,7 +83,7 @@
 			this.tabPageTime.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTime.Name = "tabPageTime";
 			this.tabPageTime.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageTime.Size = new System.Drawing.Size(256, 226);
+			this.tabPageTime.Size = new System.Drawing.Size(256, 198);
 			this.tabPageTime.TabIndex = 0;
 			this.tabPageTime.Text = "Time";
 			this.tabPageTime.UseVisualStyleBackColor = true;
@@ -174,15 +177,18 @@
 			// 
 			// tabPageTasks
 			// 
+			this.tabPageTasks.Controls.Add(this.buttonDeleteTask);
 			this.tabPageTasks.Controls.Add(this.listBoxTasks);
+			this.tabPageTasks.Controls.Add(this.buttonEditTask);
 			this.tabPageTasks.Controls.Add(this.labelDurationTotalTasks);
+			this.tabPageTasks.Controls.Add(this.buttonContinueTask);
 			this.tabPageTasks.Controls.Add(this.label3);
 			this.tabPageTasks.Controls.Add(this.label2);
 			this.tabPageTasks.Controls.Add(this.comboBoxProjectTasks);
 			this.tabPageTasks.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTasks.Name = "tabPageTasks";
 			this.tabPageTasks.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageTasks.Size = new System.Drawing.Size(256, 226);
+			this.tabPageTasks.Size = new System.Drawing.Size(256, 224);
 			this.tabPageTasks.TabIndex = 1;
 			this.tabPageTasks.Text = "Tasks";
 			this.tabPageTasks.UseVisualStyleBackColor = true;
@@ -234,8 +240,36 @@
 			this.listBoxTasks.FormattingEnabled = true;
 			this.listBoxTasks.Location = new System.Drawing.Point(3, 67);
 			this.listBoxTasks.Name = "listBoxTasks";
-			this.listBoxTasks.Size = new System.Drawing.Size(250, 160);
+			this.listBoxTasks.Size = new System.Drawing.Size(250, 121);
 			this.listBoxTasks.TabIndex = 4;
+			// 
+			// buttonContinueTask
+			// 
+			this.buttonContinueTask.Location = new System.Drawing.Point(6, 194);
+			this.buttonContinueTask.Name = "buttonContinueTask";
+			this.buttonContinueTask.Size = new System.Drawing.Size(75, 23);
+			this.buttonContinueTask.TabIndex = 1;
+			this.buttonContinueTask.Text = "Continue";
+			this.buttonContinueTask.UseVisualStyleBackColor = true;
+			this.buttonContinueTask.Click += new System.EventHandler(this.buttonContinueTask_Click);
+			// 
+			// buttonEditTask
+			// 
+			this.buttonEditTask.Location = new System.Drawing.Point(87, 194);
+			this.buttonEditTask.Name = "buttonEditTask";
+			this.buttonEditTask.Size = new System.Drawing.Size(75, 23);
+			this.buttonEditTask.TabIndex = 1;
+			this.buttonEditTask.Text = "Edit";
+			this.buttonEditTask.UseVisualStyleBackColor = true;
+			// 
+			// buttonDeleteTask
+			// 
+			this.buttonDeleteTask.Location = new System.Drawing.Point(168, 194);
+			this.buttonDeleteTask.Name = "buttonDeleteTask";
+			this.buttonDeleteTask.Size = new System.Drawing.Size(75, 23);
+			this.buttonDeleteTask.TabIndex = 1;
+			this.buttonDeleteTask.Text = "Delete";
+			this.buttonDeleteTask.UseVisualStyleBackColor = true;
 			// 
 			// Main
 			// 
@@ -275,6 +309,9 @@
 		private System.Windows.Forms.Label labelDurationTotalTasks;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.ListBox listBoxTasks;
+		private System.Windows.Forms.Button buttonContinueTask;
+		private System.Windows.Forms.Button buttonEditTask;
+		private System.Windows.Forms.Button buttonDeleteTask;
     }
 }
 

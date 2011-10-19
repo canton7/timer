@@ -67,13 +67,27 @@ namespace timer {
 				this.comboBoxProject.Text = this.taskList.Projects[0];
 		}
 
-		private void createTask() {
-			string project = this.comboBoxProject.Text;
-			string description = this.textBoxDescription.Text;
+		private bool createTask() {
+			string project = this.comboBoxProject.Text.Trim();
+			string description = this.textBoxDescription.Text.Trim();
 			// in seconds
 			TimeSpan duration = new TimeSpan(this.dateTimePickerDuration.Value.Hour, this.dateTimePickerDuration.Value.Minute, 0);
 
+			if (project.Length == 0) {
+				this.labelError.Text = "No Project";
+				this.labelError.Visible = true;
+				return false;
+			}
+			if (description.Length == 0) {
+				this.labelError.Text = "No Description";
+				this.labelError.Visible = true;
+				return false;
+			}
+
+			this.labelError.Visible = false;
+
 			this.taskList.AddTask(project, description, duration);
+			return true;
 		}
 
 		private void startTask() {
@@ -116,7 +130,8 @@ namespace timer {
 
 		private void buttonStartStop_Click(object sender, EventArgs e) {
 			if (!this.haveCurrentTask) {
-				this.createTask();
+				if (!this.createTask())
+					return;
 			}
 			switch (this.taskList.CurrentState) {
 				case Task.States.NEW:
@@ -140,6 +155,18 @@ namespace timer {
 					this.resumeTask();
 					break;
 			}
+		}
+
+		private void tabControl1_SelectedIndexChanged(object sender, EventArgs e) {
+			// Update the list of projects
+			if ((sender as TabControl).SelectedIndex != 1)
+				return;
+			this.comboBoxProjectList.Items.Clear();
+			foreach (string project in this.taskList.Projects) {
+				this.comboBoxProjectList.Items.Add(project);
+			}
+			if (this.taskList.Projects.Count > 0)
+				this.comboBoxProjectList.Text = this.taskList.Projects[0];
 		}
     }
 }

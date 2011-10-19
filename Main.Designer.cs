@@ -38,11 +38,12 @@
 			this.buttonPause = new System.Windows.Forms.Button();
 			this.buttonStartStop = new System.Windows.Forms.Button();
 			this.textBoxDescription = new System.Windows.Forms.TextBox();
-			this.comboBoxProject = new System.Windows.Forms.ComboBox();
 			this.tabPageTasks = new System.Windows.Forms.TabPage();
-			this.timer = new System.Windows.Forms.Timer(this.components);
-			this.comboBoxProjectList = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
+			this.comboBoxProjectList = new System.Windows.Forms.ComboBox();
+			this.timer = new System.Windows.Forms.Timer(this.components);
+			this.labelError = new System.Windows.Forms.Label();
+			this.comboBoxProject = new System.Windows.Forms.ComboBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPageTime.SuspendLayout();
 			this.tabPageTasks.SuspendLayout();
@@ -60,9 +61,11 @@
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(264, 252);
 			this.tabControl1.TabIndex = 0;
+			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
 			// tabPageTime
 			// 
+			this.tabPageTime.Controls.Add(this.labelError);
 			this.tabPageTime.Controls.Add(this.labelDuration);
 			this.tabPageTime.Controls.Add(this.label1);
 			this.tabPageTime.Controls.Add(this.dateTimePickerDuration);
@@ -147,14 +150,6 @@
 			this.textBoxDescription.TabIndex = 1;
 			this.textBoxDescription.Text = "The task at hand";
 			// 
-			// comboBoxProject
-			// 
-			this.comboBoxProject.FormattingEnabled = true;
-			this.comboBoxProject.Location = new System.Drawing.Point(8, 6);
-			this.comboBoxProject.Name = "comboBoxProject";
-			this.comboBoxProject.Size = new System.Drawing.Size(239, 21);
-			this.comboBoxProject.TabIndex = 0;
-			// 
 			// tabPageTasks
 			// 
 			this.tabPageTasks.Controls.Add(this.label2);
@@ -167,10 +162,14 @@
 			this.tabPageTasks.Text = "Tasks";
 			this.tabPageTasks.UseVisualStyleBackColor = true;
 			// 
-			// timer
+			// label2
 			// 
-			this.timer.Interval = 1000;
-			this.timer.Tick += new System.EventHandler(this.timer_Tick);
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(3, 9);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(43, 13);
+			this.label2.TabIndex = 1;
+			this.label2.Text = "Project:";
 			// 
 			// comboBoxProjectList
 			// 
@@ -181,14 +180,29 @@
 			this.comboBoxProjectList.Size = new System.Drawing.Size(121, 21);
 			this.comboBoxProjectList.TabIndex = 0;
 			// 
-			// label2
+			// timer
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(3, 9);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(43, 13);
-			this.label2.TabIndex = 1;
-			this.label2.Text = "Project:";
+			this.timer.Interval = 1000;
+			this.timer.Tick += new System.EventHandler(this.timer_Tick);
+			// 
+			// labelError
+			// 
+			this.labelError.AutoSize = true;
+			this.labelError.ForeColor = System.Drawing.Color.Red;
+			this.labelError.Location = new System.Drawing.Point(8, 175);
+			this.labelError.Name = "labelError";
+			this.labelError.Size = new System.Drawing.Size(34, 13);
+			this.labelError.TabIndex = 10;
+			this.labelError.Text = "Errors";
+			this.labelError.Visible = false;
+			// 
+			// comboBoxProject
+			// 
+			this.comboBoxProject.FormattingEnabled = true;
+			this.comboBoxProject.Location = new System.Drawing.Point(8, 6);
+			this.comboBoxProject.Name = "comboBoxProject";
+			this.comboBoxProject.Size = new System.Drawing.Size(239, 21);
+			this.comboBoxProject.TabIndex = 0;
 			// 
 			// Main
 			// 
@@ -211,8 +225,7 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageTime;
-        private System.Windows.Forms.TabPage tabPageTasks;
-		private System.Windows.Forms.ComboBox comboBoxProject;
+		private System.Windows.Forms.TabPage tabPageTasks;
 		private System.Windows.Forms.Button buttonPause;
 		private System.Windows.Forms.Button buttonStartStop;
 		private System.Windows.Forms.TextBox textBoxDescription;
@@ -223,6 +236,8 @@
 		private System.Windows.Forms.Timer timer;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox comboBoxProjectList;
+		private System.Windows.Forms.Label labelError;
+		private System.Windows.Forms.ComboBox comboBoxProject;
     }
 }
 

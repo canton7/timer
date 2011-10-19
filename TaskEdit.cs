@@ -54,7 +54,17 @@ namespace timer {
 			// Find the moved task, and select
 			int index = this.task.WorkTimes.FindIndex(x => x.StartedAt == workTime.StartedAt && x.StoppedAt == workTime.StoppedAt);
 			this.listBoxWorkTimes.SelectedIndex = index;
+		}
 
+		private void addWorkTime() {
+			Task.WorkTime workTime = new Task.WorkTime();
+			workTime.StartedAt = this.dateTimePickerFrom.Value;
+			workTime.StoppedAt = this.dateTimePickerFrom.Value + (this.dateTimePickerDuration.Value - new DateTime(1970, 1, 1, 0, 0, 0));
+			this.task.AddWorkTime(workTime);
+			this.populateFields();
+			// Find the new task, and select
+			int index = this.task.WorkTimes.FindIndex(x => x.StartedAt == workTime.StartedAt && x.StoppedAt == workTime.StoppedAt);
+			this.listBoxWorkTimes.SelectedIndex = index;
 		}
 
 		private void listBoxWorkTimes_SelectedIndexChanged(object sender, EventArgs e) {
@@ -68,6 +78,10 @@ namespace timer {
 
 		private void buttonEdit_Click(object sender, EventArgs e) {
 			this.editWorkTime(this.task.WorkTimes[this.listBoxWorkTimes.SelectedIndex]);
+		}
+
+		private void buttonNew_Click(object sender, EventArgs e) {
+			this.addWorkTime();
 		}
 	}
 }

@@ -33,6 +33,7 @@
 			this.dateTimePickerDuration = new System.Windows.Forms.DateTimePicker();
 			this.buttonDeleteWorkTime = new System.Windows.Forms.Button();
 			this.buttonEdit = new System.Windows.Forms.Button();
+			this.buttonNew = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// comboBoxProject
@@ -115,7 +116,7 @@
 			// 
 			// buttonDeleteWorkTime
 			// 
-			this.buttonDeleteWorkTime.Location = new System.Drawing.Point(88, 252);
+			this.buttonDeleteWorkTime.Location = new System.Drawing.Point(196, 259);
 			this.buttonDeleteWorkTime.Name = "buttonDeleteWorkTime";
 			this.buttonDeleteWorkTime.Size = new System.Drawing.Size(75, 23);
 			this.buttonDeleteWorkTime.TabIndex = 8;
@@ -125,7 +126,7 @@
 			// 
 			// buttonEdit
 			// 
-			this.buttonEdit.Location = new System.Drawing.Point(7, 252);
+			this.buttonEdit.Location = new System.Drawing.Point(7, 259);
 			this.buttonEdit.Name = "buttonEdit";
 			this.buttonEdit.Size = new System.Drawing.Size(75, 23);
 			this.buttonEdit.TabIndex = 8;
@@ -133,11 +134,22 @@
 			this.buttonEdit.UseVisualStyleBackColor = true;
 			this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
 			// 
+			// buttonNew
+			// 
+			this.buttonNew.Location = new System.Drawing.Point(101, 259);
+			this.buttonNew.Name = "buttonNew";
+			this.buttonNew.Size = new System.Drawing.Size(75, 23);
+			this.buttonNew.TabIndex = 9;
+			this.buttonNew.Text = "New";
+			this.buttonNew.UseVisualStyleBackColor = true;
+			this.buttonNew.Click += new System.EventHandler(this.buttonNew_Click);
+			// 
 			// TaskEdit
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(283, 285);
+			this.ClientSize = new System.Drawing.Size(283, 294);
+			this.Controls.Add(this.buttonNew);
 			this.Controls.Add(this.buttonEdit);
 			this.Controls.Add(this.buttonDeleteWorkTime);
 			this.Controls.Add(this.dateTimePickerDuration);
@@ -167,5 +179,6 @@
 		private System.Windows.Forms.DateTimePicker dateTimePickerDuration;
 		private System.Windows.Forms.Button buttonDeleteWorkTime;
 		private System.Windows.Forms.Button buttonEdit;
+		private System.Windows.Forms.Button buttonNew;
 	}
 }

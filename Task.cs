@@ -108,6 +108,11 @@ namespace timer {
 			this.workTimes.Remove(workTime);
 		}
 
+		public void AddWorkTime(WorkTime workTime) {
+			this.workTimes.Add(workTime);
+			this.SortWorkTimes();
+		}
+
 		public SerializedForm Serialize() {
 			SerializedForm serializedForm = new SerializedForm();
 			serializedForm.Project = this.Project;

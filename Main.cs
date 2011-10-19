@@ -150,7 +150,9 @@ namespace timer {
 		}
 
 		private void editTask(Task task) {
-			using (TaskEdit taskEdit = new TaskEdit(this.taskList, task)) {
+			// Copy the task so they don't edit the original copy
+			Task taskNew = new Task(task.Serialize());
+			using (TaskEdit taskEdit = new TaskEdit(this.taskList, taskNew)) {
 				taskEdit.ShowDialog();
 			}
 		}

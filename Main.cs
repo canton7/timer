@@ -125,6 +125,16 @@ namespace timer {
 			}
 		}
 
+		private void populateProjectTasks() {
+			// Update the list of projects
+			this.comboBoxProjectTasks.Items.Clear();
+			foreach (string project in this.taskList.Projects) {
+				this.comboBoxProjectTasks.Items.Add(project);
+			}
+			if (this.taskList.Projects.Count > 0)
+				this.comboBoxProjectTasks.Text = (this.comboBoxProjectTasks.Items.Contains(this.comboBoxProject.Text)) ? this.comboBoxProject.Text : this.taskList.Projects[0];
+		}
+
 		private void continueTask(Task task) {
 			this.stopTask();
 			this.taskList.SetCurrentTask(task);
@@ -142,19 +152,28 @@ namespace timer {
 			if (currentTask)
 				this.stopTask();
 			this.taskList.DeleteTask(task);
-			// If it was the current take, re-populate
+			// If it was the current task, re-populate
 			this.populateProjects();
+			this.populateProjectTasks();
 			this.populateTaskInfo();
 			this.populateTaskList();
 			this.fileHandler.SaveTasks(this.taskList.Serialize());
 		}
 
-		private void editTask(Task task) {
+		private void editTask(int task_index, Task task) {
 			// Copy the task so they don't edit the original copy
 			Task taskNew = new Task(task.Serialize());
 			using (TaskEdit taskEdit = new TaskEdit(this.taskList, taskNew)) {
-				taskEdit.ShowDialog();
+				DialogResult result = taskEdit.ShowDialog();
+				if (result != DialogResult.OK)
+					return;
+				this.taskList.ReplaceTask(task_index, taskEdit.Task);
+
+				this.populateProjects();
+				this.populateProjectTasks();
+				this.comboBoxProjectTasks.SelectedValue = taskEdit.Task.Project;
 			}
+			this.fileHandler.SaveTasks(this.taskList.Serialize());
 		}
 
 		private void timer_Tick(object sender, EventArgs e) {
@@ -189,15 +208,9 @@ namespace timer {
 		}
 
 		private void tabControl1_SelectedIndexChanged(object sender, EventArgs e) {
-			// Update the list of projects
 			if ((sender as TabControl).SelectedIndex != 1)
 				return;
-			this.comboBoxProjectTasks.Items.Clear();
-			foreach (string project in this.taskList.Projects) {
-				this.comboBoxProjectTasks.Items.Add(project);
-			}
-			if (this.taskList.Projects.Count > 0)
-				this.comboBoxProjectTasks.Text = (this.comboBoxProjectTasks.Items.Contains(this.comboBoxProject.Text)) ? this.comboBoxProject.Text : this.taskList.Projects[0];
+			this.populateProjectTasks();
 		}
 
 		private void comboBoxProject_TextChanged(object sender, EventArgs e) {
@@ -224,7 +237,7 @@ namespace timer {
 
 		private void buttonEditTask_Click(object sender, EventArgs e) {
 			int index = this.listBoxTasks.SelectedIndex;
-			this.editTask(this.listBoxTasksContents[index]);
+			this.editTask(index, this.listBoxTasksContents[index]);
 		}
 
 		private void buttonDeleteTask_Click(object sender, EventArgs e) {

@@ -10,7 +10,11 @@ using System.Windows.Forms;
 namespace timer {
 	public partial class TaskEdit : Form {
 		private TaskList taskList;
+
 		private Task task;
+		public Task Task {
+			get { return this.task; }
+		}
 
 		public TaskEdit(TaskList taskList, Task task) {
 			this.taskList = taskList;
@@ -82,6 +86,11 @@ namespace timer {
 
 		private void buttonNew_Click(object sender, EventArgs e) {
 			this.addWorkTime();
+		}
+
+		private void buttonSave_Click(object sender, EventArgs e) {
+			this.task.Project = this.comboBoxProject.Text;
+			this.task.Description = this.textBoxDescription.Text;
 		}
 	}
 }

@@ -48,10 +48,7 @@ namespace timer {
 			if (serializedForm == null)
 				return;
 			this.Unserialize(serializedForm);
-			foreach (Task task in this.tasks) {
-				if (!this.projects.Contains(task.Project))
-					this.projects.Add(task.Project);
-			}
+			this.generateProjects();
 			this.currentProjectFinishedTime = this.calcCurrentProjectFinishedTime();
 		}
 
@@ -119,7 +116,26 @@ namespace timer {
 			if (!this.tasks.Contains(task))
 				throw new Exception("Can't find that task when deleteing");
 			this.tasks.Remove(task);
+			this.generateProjects();
 			this.currentProjectFinishedTime = this.calcCurrentProjectFinishedTime();
+		}
+
+		public void ReplaceTask(int old_index, Task task) {
+			//int old_index = this.tasks.
+			this.tasks.RemoveAt(old_index);
+			this.tasks.Insert(old_index, task);
+			if (!this.projects.Contains(task.Project))
+				this.projects.Insert(0, task.Project);
+			this.generateProjects();
+		}
+
+
+		private void generateProjects() {
+			this.projects.Clear();
+			foreach (Task task in this.tasks) {
+				if (!this.projects.Contains(task.Project))
+					this.projects.Add(task.Project);
+			}
 		}
 
 		public SerializedForm Serialize() {

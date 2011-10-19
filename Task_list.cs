@@ -30,7 +30,7 @@ namespace timer {
 			get { return (this.tasks.Count > 0) ? this.tasks[0].Project : ""; }
 		}
 
-		public struct SerializedForm {
+		public class SerializedForm {
 			public Task.SerializedForm[] Tasks;
 		}
 
@@ -38,6 +38,8 @@ namespace timer {
 		}
 
 		public TaskList(SerializedForm serializedForm) {
+			if (serializedForm == null)
+				return;
 			this.Unserialize(serializedForm);
 			foreach (Task task in this.tasks) {
 				this.projects.Add(task.Project);

@@ -161,6 +161,7 @@ namespace timer {
 		}
 
 		private void editTask(int task_index, Task task) {
+			this.stopTask();
 			// Copy the task so they don't edit the original copy
 			Task taskNew = new Task(task.Serialize());
 			using (TaskEdit taskEdit = new TaskEdit(this.taskList, taskNew)) {

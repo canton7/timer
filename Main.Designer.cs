@@ -31,6 +31,8 @@
 			this.components = new System.ComponentModel.Container();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPageTime = new System.Windows.Forms.TabPage();
+			this.labelDurationTotal = new System.Windows.Forms.Label();
+			this.labelError = new System.Windows.Forms.Label();
 			this.labelDuration = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.dateTimePickerDuration = new System.Windows.Forms.DateTimePicker();
@@ -38,13 +40,13 @@
 			this.buttonPause = new System.Windows.Forms.Button();
 			this.buttonStartStop = new System.Windows.Forms.Button();
 			this.textBoxDescription = new System.Windows.Forms.TextBox();
-			this.tabPageTasks = new System.Windows.Forms.TabPage();
-			this.label2 = new System.Windows.Forms.Label();
-			this.comboBoxProjectList = new System.Windows.Forms.ComboBox();
-			this.timer = new System.Windows.Forms.Timer(this.components);
-			this.labelError = new System.Windows.Forms.Label();
 			this.comboBoxProject = new System.Windows.Forms.ComboBox();
-			this.labelDurationTotal = new System.Windows.Forms.Label();
+			this.tabPageTasks = new System.Windows.Forms.TabPage();
+			this.labelDurationTotalTasks = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.comboBoxProjectTasks = new System.Windows.Forms.ComboBox();
+			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.tabControl1.SuspendLayout();
 			this.tabPageTime.SuspendLayout();
 			this.tabPageTasks.SuspendLayout();
@@ -83,6 +85,26 @@
 			this.tabPageTime.TabIndex = 0;
 			this.tabPageTime.Text = "Time";
 			this.tabPageTime.UseVisualStyleBackColor = true;
+			// 
+			// labelDurationTotal
+			// 
+			this.labelDurationTotal.AutoSize = true;
+			this.labelDurationTotal.Location = new System.Drawing.Point(130, 143);
+			this.labelDurationTotal.Name = "labelDurationTotal";
+			this.labelDurationTotal.Size = new System.Drawing.Size(49, 13);
+			this.labelDurationTotal.TabIndex = 11;
+			this.labelDurationTotal.Text = "00:00:00";
+			// 
+			// labelError
+			// 
+			this.labelError.AutoSize = true;
+			this.labelError.ForeColor = System.Drawing.Color.Red;
+			this.labelError.Location = new System.Drawing.Point(8, 175);
+			this.labelError.Name = "labelError";
+			this.labelError.Size = new System.Drawing.Size(34, 13);
+			this.labelError.TabIndex = 10;
+			this.labelError.Text = "Errors";
+			this.labelError.Visible = false;
 			// 
 			// labelDuration
 			// 
@@ -152,10 +174,21 @@
 			this.textBoxDescription.TabIndex = 1;
 			this.textBoxDescription.Text = "The task at hand";
 			// 
+			// comboBoxProject
+			// 
+			this.comboBoxProject.FormattingEnabled = true;
+			this.comboBoxProject.Location = new System.Drawing.Point(8, 6);
+			this.comboBoxProject.Name = "comboBoxProject";
+			this.comboBoxProject.Size = new System.Drawing.Size(239, 21);
+			this.comboBoxProject.TabIndex = 0;
+			this.comboBoxProject.TextChanged += new System.EventHandler(this.comboBoxProject_TextChanged);
+			// 
 			// tabPageTasks
 			// 
+			this.tabPageTasks.Controls.Add(this.labelDurationTotalTasks);
+			this.tabPageTasks.Controls.Add(this.label3);
 			this.tabPageTasks.Controls.Add(this.label2);
-			this.tabPageTasks.Controls.Add(this.comboBoxProjectList);
+			this.tabPageTasks.Controls.Add(this.comboBoxProjectTasks);
 			this.tabPageTasks.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTasks.Name = "tabPageTasks";
 			this.tabPageTasks.Padding = new System.Windows.Forms.Padding(3);
@@ -163,6 +196,24 @@
 			this.tabPageTasks.TabIndex = 1;
 			this.tabPageTasks.Text = "Tasks";
 			this.tabPageTasks.UseVisualStyleBackColor = true;
+			// 
+			// labelDurationTotalTasks
+			// 
+			this.labelDurationTotalTasks.AutoSize = true;
+			this.labelDurationTotalTasks.Location = new System.Drawing.Point(50, 38);
+			this.labelDurationTotalTasks.Name = "labelDurationTotalTasks";
+			this.labelDurationTotalTasks.Size = new System.Drawing.Size(49, 13);
+			this.labelDurationTotalTasks.TabIndex = 3;
+			this.labelDurationTotalTasks.Text = "00:00:00";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(9, 38);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(34, 13);
+			this.label3.TabIndex = 2;
+			this.label3.Text = "Total:";
 			// 
 			// label2
 			// 
@@ -173,48 +224,20 @@
 			this.label2.TabIndex = 1;
 			this.label2.Text = "Project:";
 			// 
-			// comboBoxProjectList
+			// comboBoxProjectTasks
 			// 
-			this.comboBoxProjectList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBoxProjectList.FormattingEnabled = true;
-			this.comboBoxProjectList.Location = new System.Drawing.Point(52, 6);
-			this.comboBoxProjectList.Name = "comboBoxProjectList";
-			this.comboBoxProjectList.Size = new System.Drawing.Size(121, 21);
-			this.comboBoxProjectList.TabIndex = 0;
+			this.comboBoxProjectTasks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxProjectTasks.FormattingEnabled = true;
+			this.comboBoxProjectTasks.Location = new System.Drawing.Point(52, 6);
+			this.comboBoxProjectTasks.Name = "comboBoxProjectTasks";
+			this.comboBoxProjectTasks.Size = new System.Drawing.Size(121, 21);
+			this.comboBoxProjectTasks.TabIndex = 0;
+			this.comboBoxProjectTasks.SelectedIndexChanged += new System.EventHandler(this.comboBoxProjectTasks_SelectedIndexChanged);
 			// 
 			// timer
 			// 
 			this.timer.Interval = 1000;
 			this.timer.Tick += new System.EventHandler(this.timer_Tick);
-			// 
-			// labelError
-			// 
-			this.labelError.AutoSize = true;
-			this.labelError.ForeColor = System.Drawing.Color.Red;
-			this.labelError.Location = new System.Drawing.Point(8, 175);
-			this.labelError.Name = "labelError";
-			this.labelError.Size = new System.Drawing.Size(34, 13);
-			this.labelError.TabIndex = 10;
-			this.labelError.Text = "Errors";
-			this.labelError.Visible = false;
-			// 
-			// comboBoxProject
-			// 
-			this.comboBoxProject.FormattingEnabled = true;
-			this.comboBoxProject.Location = new System.Drawing.Point(8, 6);
-			this.comboBoxProject.Name = "comboBoxProject";
-			this.comboBoxProject.Size = new System.Drawing.Size(239, 21);
-			this.comboBoxProject.TabIndex = 0;
-			this.comboBoxProject.TextChanged += new System.EventHandler(this.comboBoxProject_TextChanged);
-			// 
-			// labelDurationTotal
-			// 
-			this.labelDurationTotal.AutoSize = true;
-			this.labelDurationTotal.Location = new System.Drawing.Point(130, 143);
-			this.labelDurationTotal.Name = "labelDurationTotal";
-			this.labelDurationTotal.Size = new System.Drawing.Size(49, 13);
-			this.labelDurationTotal.TabIndex = 11;
-			this.labelDurationTotal.Text = "00:00:00";
 			// 
 			// Main
 			// 
@@ -247,10 +270,12 @@
 		private System.Windows.Forms.Label labelDuration;
 		private System.Windows.Forms.Timer timer;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.ComboBox comboBoxProjectList;
+		private System.Windows.Forms.ComboBox comboBoxProjectTasks;
 		private System.Windows.Forms.Label labelError;
 		private System.Windows.Forms.ComboBox comboBoxProject;
 		private System.Windows.Forms.Label labelDurationTotal;
+		private System.Windows.Forms.Label labelDurationTotalTasks;
+		private System.Windows.Forms.Label label3;
     }
 }
 

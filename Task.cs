@@ -24,7 +24,7 @@ namespace timer {
 		private TimeSpan finishedDuration;
 
 		public TimeSpan Duration {
-			get { return this.finishedDuration + ((this.workTimes.Count == 0) ? new TimeSpan() : DateTime.Now - this.workTimes[0].StartedAt); }
+			get { return this.finishedDuration + ((this.state == States.IN_PROGRESS && this.workTimes.Count > 0) ? DateTime.Now - this.workTimes[0].StartedAt : new TimeSpan()); }
 		}
 
 		private TimeSpan expectedTime;
@@ -39,6 +39,10 @@ namespace timer {
 		public class WorkTime {
 			public DateTime StartedAt;
 			public DateTime? FinishedAt;
+
+			public TimeSpan Duration {
+				get { return this.FinishedAt.Value - this.StartedAt; }
+			}
 
 			public struct SerializedForm {
 				public string StartedAt;
@@ -120,6 +124,12 @@ namespace timer {
 			foreach (WorkTime.SerializedForm serializedWork in serializedForm.WorkTimes) {
 				this.workTimes.Add(new WorkTime(serializedWork));
 			}
+
+			this.finishedDuration = new TimeSpan(0);
+			foreach (WorkTime workTime in this.workTimes) {
+				this.finishedDuration += workTime.Duration;
+			}
+
 		}
 	}
 }

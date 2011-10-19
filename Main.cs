@@ -163,17 +163,22 @@ namespace timer {
 			// Update the list of projects
 			if ((sender as TabControl).SelectedIndex != 1)
 				return;
-			this.comboBoxProjectList.Items.Clear();
+			this.comboBoxProjectTasks.Items.Clear();
 			foreach (string project in this.taskList.Projects) {
-				this.comboBoxProjectList.Items.Add(project);
+				this.comboBoxProjectTasks.Items.Add(project);
 			}
 			if (this.taskList.Projects.Count > 0)
-				this.comboBoxProjectList.Text = this.taskList.Projects[0];
+				this.comboBoxProjectTasks.Text = this.taskList.Projects[0];
 		}
 
 		private void comboBoxProject_TextChanged(object sender, EventArgs e) {
-			string project = (sender as ComboBox).Text;
-			this.labelDurationTotal.Text = this.taskList.GetProjectTime(project).ToString("hh':'mm':'ss");
+			ComboBox senderbox = sender as ComboBox;
+			this.labelDurationTotal.Text = this.taskList.GetProjectTime(senderbox.Text).ToString("hh':'mm':'ss");
+		}
+
+		private void comboBoxProjectTasks_SelectedIndexChanged(object sender, EventArgs e) {
+			ComboBox senderbox = sender as ComboBox;
+			this.labelDurationTotalTasks.Text = this.taskList.GetProjectTime(senderbox.Text).ToString("hh':'mm':'ss");
 		}
     }
 }

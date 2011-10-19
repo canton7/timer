@@ -61,6 +61,7 @@ namespace timer {
 		private void populateProjects() {
 			this.comboBoxProject.Text = this.taskList.CurrentProject;
 
+			this.comboBoxProject.Items.Clear();
 			foreach (string project in this.taskList.Projects) {
 				this.comboBoxProject.Items.Add(project);
 			}

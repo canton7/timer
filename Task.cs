@@ -12,6 +12,9 @@ namespace timer {
 		public string Description {
 			get; set;
 		}
+		public bool SoundedAlarm {
+			get; set;
+		}
 
 		public enum States { IN_PROGRESS, STOPPED };
 		private States state;
@@ -41,6 +44,7 @@ namespace timer {
 			public string Description;
 			public string ExpectedTime;
 			public States State;
+			public bool SoundedAlarm;
 			public WorkTime.SerializedForm[] WorkTimes;
 		}
 
@@ -84,6 +88,7 @@ namespace timer {
 			this.Project = project;
 			this.Description = desciption;
 			this.expectedTime = expectedTime;
+			this.SoundedAlarm = (expectedTime == new TimeSpan(0) ? true : false);
 		}
 
 		public Task(SerializedForm serializedForm) {
@@ -120,6 +125,7 @@ namespace timer {
 			serializedForm.Description = this.Description;
 			serializedForm.ExpectedTime = this.expectedTime.ToString("hh':'mm");
 			serializedForm.State = this.state;
+			serializedForm.SoundedAlarm = this.SoundedAlarm;
 			List<WorkTime.SerializedForm> workTimes = new List<WorkTime.SerializedForm>();
 			foreach (WorkTime workTime in this.workTimes) {
 				workTimes.Add(workTime.Serialize());
@@ -132,6 +138,7 @@ namespace timer {
 			this.Project = serializedForm.Project;
 			this.Description = serializedForm.Description;
 			this.state = serializedForm.State;
+			this.SoundedAlarm = serializedForm.SoundedAlarm;
 			string[] parts = serializedForm.ExpectedTime.Split(':');
 			this.expectedTime = new TimeSpan(int.Parse(parts[0]), int.Parse(parts[1]), 0);
 			foreach (WorkTime.SerializedForm serializedWork in serializedForm.WorkTimes) {

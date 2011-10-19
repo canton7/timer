@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Media;
 
 
 namespace timer {
@@ -18,6 +19,9 @@ namespace timer {
 
 		private List<Task> listBoxTasksContents = new List<Task>();
 
+		private bool alarmSounding = false;
+		private SoundPlayer alarm;
+
 		public Main() {
 			InitializeComponent();
 			this.fileHandler = FileHandler.Instance;
@@ -25,7 +29,7 @@ namespace timer {
 			this.taskList = new TaskList(this.fileHandler.LoadTasks());
 			this.populateProjects();
 
-			//string json = LitJson.JsonMapper.ToJson(new TimeSpan());
+			this.alarm = new SoundPlayer("../../alarm.wav");
         }
 
 		private void setButtonEnabled() {
@@ -62,7 +66,7 @@ namespace timer {
 			string project = this.comboBoxProject.Text.Trim();
 			string description = this.textBoxDescription.Text.Trim();
 			// in seconds
-			TimeSpan duration = new TimeSpan(this.dateTimePickerDuration.Value.Hour, this.dateTimePickerDuration.Value.Minute, 0);
+			TimeSpan duration = new TimeSpan(this.dateTimePickerDuration.Value.Hour, this.dateTimePickerDuration.Value.Minute, this.dateTimePickerDuration.Value.Second);
 
 			if (project.Length == 0) {
 				this.labelError.Text = "No Project";
@@ -180,6 +184,21 @@ namespace timer {
 			this.fileHandler.SaveTasks(this.taskList.Serialize());
 		}
 
+		private void startAlarm() {
+			this.alarm.PlayLooping();
+			// Start the alarm timer
+			this.taskList.CurrentTask.SoundedAlarm = true;
+			this.timerAlarm.Start();
+			this.alarmSounding = true;
+		}
+
+		private void stopAlarm() {
+			this.alarm.Stop();
+			this.timerAlarm.Stop();
+			this.alarmSounding = false;
+			this.buttonStartStop.BackColor = Color.Transparent;
+		}
+
 		private void timer_Tick(object sender, EventArgs e) {
 			if (!this.haveCurrentTask) {
 				this.timer.Stop();
@@ -187,9 +206,22 @@ namespace timer {
 			}
 			this.labelDuration.Text = this.taskList.CurrentTask.Duration.ToString("hh':'mm':'ss");
 			this.labelDurationTotal.Text = this.taskList.CurrentProjectTime.ToString("hh':'mm':'ss");
+
+			if (this.taskList.CurrentTask.Duration > this.taskList.CurrentTask.ExpectedTime && !this.alarmSounding && !this.taskList.CurrentTask.SoundedAlarm)
+				this.startAlarm();
+		}
+
+		private void timerAlarm_Tick(object sender, EventArgs e) {
+			if (this.buttonStartStop.BackColor != Color.Red)
+				this.buttonStartStop.BackColor = Color.Red;
+			else
+				this.buttonStartStop.BackColor = Color.Transparent;
 		}
 
 		private void buttonStartStop_Click(object sender, EventArgs e) {
+			if (this.alarmSounding)
+				this.stopAlarm();
+
 			if (!this.haveCurrentTask) {
 				if (!this.createTask())
 					return;

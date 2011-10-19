@@ -53,6 +53,7 @@
 			this.comboBoxProjectTasks = new System.Windows.Forms.ComboBox();
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.progressBar = new System.Windows.Forms.ProgressBar();
+			this.timerAlarm = new System.Windows.Forms.Timer(this.components);
 			this.tabControl1.SuspendLayout();
 			this.tabPageTime.SuspendLayout();
 			this.tabPageTasks.SuspendLayout();
@@ -88,7 +89,7 @@
 			this.tabPageTime.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTime.Name = "tabPageTime";
 			this.tabPageTime.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageTime.Size = new System.Drawing.Size(229, 209);
+			this.tabPageTime.Size = new System.Drawing.Size(230, 209);
 			this.tabPageTime.TabIndex = 0;
 			this.tabPageTime.Text = "Time";
 			this.tabPageTime.UseVisualStyleBackColor = true;
@@ -172,7 +173,7 @@
 			// buttonSave
 			// 
 			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonSave.Location = new System.Drawing.Point(145, 106);
+			this.buttonSave.Location = new System.Drawing.Point(146, 106);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(75, 23);
 			this.buttonSave.TabIndex = 4;
@@ -184,12 +185,12 @@
 			// 
 			this.buttonStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonStartStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.buttonStartStop.Location = new System.Drawing.Point(145, 146);
+			this.buttonStartStop.Location = new System.Drawing.Point(146, 146);
 			this.buttonStartStop.Name = "buttonStartStop";
 			this.buttonStartStop.Size = new System.Drawing.Size(75, 56);
 			this.buttonStartStop.TabIndex = 2;
 			this.buttonStartStop.Text = "Start";
-			this.buttonStartStop.UseVisualStyleBackColor = true;
+			this.buttonStartStop.UseVisualStyleBackColor = false;
 			this.buttonStartStop.Click += new System.EventHandler(this.buttonStartStop_Click);
 			// 
 			// textBoxDescription
@@ -200,7 +201,7 @@
 			this.textBoxDescription.Location = new System.Drawing.Point(8, 33);
 			this.textBoxDescription.Multiline = true;
 			this.textBoxDescription.Name = "textBoxDescription";
-			this.textBoxDescription.Size = new System.Drawing.Size(212, 67);
+			this.textBoxDescription.Size = new System.Drawing.Size(213, 67);
 			this.textBoxDescription.TabIndex = 1;
 			this.textBoxDescription.Text = "The task at hand";
 			// 
@@ -211,7 +212,7 @@
 			this.comboBoxProject.FormattingEnabled = true;
 			this.comboBoxProject.Location = new System.Drawing.Point(57, 6);
 			this.comboBoxProject.Name = "comboBoxProject";
-			this.comboBoxProject.Size = new System.Drawing.Size(163, 21);
+			this.comboBoxProject.Size = new System.Drawing.Size(164, 21);
 			this.comboBoxProject.TabIndex = 0;
 			this.comboBoxProject.TextChanged += new System.EventHandler(this.comboBoxProject_TextChanged);
 			// 
@@ -328,6 +329,11 @@
 			this.progressBar.Size = new System.Drawing.Size(230, 10);
 			this.progressBar.TabIndex = 14;
 			// 
+			// timerAlarm
+			// 
+			this.timerAlarm.Interval = 250;
+			this.timerAlarm.Tick += new System.EventHandler(this.timerAlarm_Tick);
+			// 
 			// Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -373,6 +379,7 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ProgressBar progressBar;
+		private System.Windows.Forms.Timer timerAlarm;
     }
 }
 

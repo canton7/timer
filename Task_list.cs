@@ -55,9 +55,11 @@ namespace timer {
 		}
 
 		public void AddTask(string project, string description, TimeSpan duration) {
-			this.tasks.Insert(0, new Task(project, description, duration));
+			// Don't replace the top-of-the-list task if it's currently running
+			int index = (this.tasks[0].State == Task.States.IN_PROGRESS) ? 1 : 0;
+			this.tasks.Insert(index, new Task(project, description, duration));
 			if (!this.projects.Contains(project))
-				this.projects.Insert(0, project);
+				this.projects.Insert(index, project);
 			this.currentProjectFinishedTime = this.calcCurrentProjectFinishedTime();
 		}
 

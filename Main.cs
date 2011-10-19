@@ -29,18 +29,15 @@ namespace timer {
 		private void setButtonEnabled() {
 			if (!this.haveCurrentTask) {
 				this.buttonStartStop.Text = "Start";
-				this.buttonSave.Enabled = true;
 				return;
 			}
 
 			switch (this.taskList.CurrentState) {
 				case Task.States.STOPPED:
 					this.buttonStartStop.Text = "Start";
-					this.buttonSave.Enabled = true;
 					break;
 				case Task.States.IN_PROGRESS:
-					this.buttonStartStop.Text = "Stop";
-					this.buttonSave.Enabled = false;
+					this.buttonStartStop.Text = "Stop";;
 					break;
 				default:
 					break;
@@ -135,6 +132,13 @@ namespace timer {
 					this.stopTask();
 					break;
 			}
+		}
+
+		private void buttonSave_Click(object sender, EventArgs e) {
+			this.createTask();
+			// Set fields to what they were before
+			this.comboBoxProject.Text = this.taskList.CurrentProject;
+			this.textBoxDescription.Text = this.taskList.CurrentTask.Description;
 		}
 
 		private void tabControl1_SelectedIndexChanged(object sender, EventArgs e) {

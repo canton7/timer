@@ -59,7 +59,11 @@ namespace timer {
 			}
 			public WorkTime(SerializedForm serializedForm) {
 				this.StartedAt = DateTime.Parse(serializedForm.StartedAt);
-				this.StoppedAt = DateTime.Parse(serializedForm.StoppedAt);
+				if (serializedForm.StoppedAt == null)
+					this.StoppedAt = null;
+				else
+					this.StoppedAt = DateTime.Parse(serializedForm.StoppedAt);
+					
 			}
 
 			public SerializedForm Serialize() {

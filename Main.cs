@@ -231,17 +231,23 @@ namespace timer {
 
 		private void buttonContinueTask_Click(object sender, EventArgs e) {;
 			int index = this.listBoxTasks.SelectedIndex;
+			if (index == -1)
+				return;
 			this.continueTask(this.listBoxTasksContents[index]);
 			this.tabControl1.SelectedIndex = 0;
 		}
 
 		private void buttonEditTask_Click(object sender, EventArgs e) {
 			int index = this.listBoxTasks.SelectedIndex;
+			if (index == -1)
+				return;
 			this.editTask(index, this.listBoxTasksContents[index]);
 		}
 
 		private void buttonDeleteTask_Click(object sender, EventArgs e) {
 			int index = this.listBoxTasks.SelectedIndex;
+			if (index == -1)
+				return;
 			this.deleteTask(this.listBoxTasksContents[index]);
 		}
 

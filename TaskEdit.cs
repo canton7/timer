@@ -77,10 +77,14 @@ namespace timer {
 		}
 
 		private void buttonDeleteWorkTime_Click(object sender, EventArgs e) {
+			if (this.listBoxWorkTimes.SelectedIndex == -1)
+				return;
 			this.deleteWorkTime(this.task.WorkTimes[this.listBoxWorkTimes.SelectedIndex]);
 		}
 
 		private void buttonEdit_Click(object sender, EventArgs e) {
+			if (this.listBoxWorkTimes.SelectedIndex == -1)
+				return;
 			this.editWorkTime(this.task.WorkTimes[this.listBoxWorkTimes.SelectedIndex]);
 		}
 

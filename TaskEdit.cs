@@ -32,6 +32,7 @@ namespace timer {
 				this.comboBoxProject.Items.Add(project);
 			}
 
+			this.dateTimePickerExpectedDuration.Value = new DateTime(1970, 1, 1, 0, 0, 0) + this.task.ExpectedTime;
 			this.textBoxDescription.Text = this.task.Description;
 
 			this.listBoxWorkTimes.Items.Clear();
@@ -97,6 +98,7 @@ namespace timer {
 		private void buttonSave_Click(object sender, EventArgs e) {
 			this.task.Project = this.comboBoxProject.Text;
 			this.task.Description = this.textBoxDescription.Text;
+			this.task.ExpectedTime = this.dateTimePickerExpectedDuration.Value - new DateTime(1970, 1, 1, 0, 0, 0);
 		}
 	}
 }

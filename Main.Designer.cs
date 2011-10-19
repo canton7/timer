@@ -160,12 +160,12 @@
 			// dateTimePickerDuration
 			// 
 			this.dateTimePickerDuration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.dateTimePickerDuration.CustomFormat = "HH:mm";
+			this.dateTimePickerDuration.CustomFormat = "HH:mm:ss";
 			this.dateTimePickerDuration.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
 			this.dateTimePickerDuration.Location = new System.Drawing.Point(62, 106);
 			this.dateTimePickerDuration.Name = "dateTimePickerDuration";
 			this.dateTimePickerDuration.ShowUpDown = true;
-			this.dateTimePickerDuration.Size = new System.Drawing.Size(75, 20);
+			this.dateTimePickerDuration.Size = new System.Drawing.Size(69, 20);
 			this.dateTimePickerDuration.TabIndex = 6;
 			this.dateTimePickerDuration.Value = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
 			// 
@@ -228,7 +228,7 @@
 			this.tabPageTasks.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTasks.Name = "tabPageTasks";
 			this.tabPageTasks.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageTasks.Size = new System.Drawing.Size(229, 208);
+			this.tabPageTasks.Size = new System.Drawing.Size(229, 209);
 			this.tabPageTasks.TabIndex = 1;
 			this.tabPageTasks.Text = "Tasks";
 			this.tabPageTasks.UseVisualStyleBackColor = true;
@@ -236,7 +236,7 @@
 			// buttonDeleteTask
 			// 
 			this.buttonDeleteTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.buttonDeleteTask.Location = new System.Drawing.Point(148, 179);
+			this.buttonDeleteTask.Location = new System.Drawing.Point(148, 180);
 			this.buttonDeleteTask.Name = "buttonDeleteTask";
 			this.buttonDeleteTask.Size = new System.Drawing.Size(75, 23);
 			this.buttonDeleteTask.TabIndex = 1;
@@ -255,7 +255,7 @@
 			// buttonEditTask
 			// 
 			this.buttonEditTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.buttonEditTask.Location = new System.Drawing.Point(83, 179);
+			this.buttonEditTask.Location = new System.Drawing.Point(83, 180);
 			this.buttonEditTask.Name = "buttonEditTask";
 			this.buttonEditTask.Size = new System.Drawing.Size(59, 23);
 			this.buttonEditTask.TabIndex = 1;
@@ -275,7 +275,7 @@
 			// buttonContinueTask
 			// 
 			this.buttonContinueTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.buttonContinueTask.Location = new System.Drawing.Point(6, 179);
+			this.buttonContinueTask.Location = new System.Drawing.Point(6, 180);
 			this.buttonContinueTask.Name = "buttonContinueTask";
 			this.buttonContinueTask.Size = new System.Drawing.Size(71, 23);
 			this.buttonContinueTask.TabIndex = 1;

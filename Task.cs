@@ -33,6 +33,7 @@ namespace timer {
 		private TimeSpan expectedTime;
 		public TimeSpan ExpectedTime {
 			get { return this.expectedTime; }
+			set { this.expectedTime = value; }
 		}
 
 		public struct SerializedForm {

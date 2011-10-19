@@ -5,8 +5,19 @@ using System.Text;
 
 namespace timer {
 	class Task {
+		//private string project;
+		public string Project {
+			get; set;
+		}
+		public string Description {
+			get; set;
+		}
+
 		public enum States { NEW, IN_PROGRESS, PAUSED, FINISHED };
 		private States state;
+		public States State {
+			get { return this.state; }
+		}
 
 		public class WorkTime {
 			public DateTime StartedAt;
@@ -21,9 +32,12 @@ namespace timer {
 
 		private int expectedTime;
 
-		public Task() {
+		public Task(string project, string desciption, int expectedTime) {
 			// Used to create a new task
-			this.state = States.FINISHED;
+			this.state = States.NEW;
+			this.Project = project;
+			this.Description = desciption;
+			this.expectedTime = expectedTime;
 		}
 
 		public void Start() {

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace timer {
 	public partial class Main : Form {
 		private List<Task> tasks = new List<Task>();
@@ -18,12 +19,18 @@ namespace timer {
 
 		private bool haveCurrentTask = false;
 
+		public struct SerializedForm {
+			public Task.SerializedForm[] Tasks;
+		}
+
 		public Main() {
 			InitializeComponent();
 
-			this.tasks.Add(new Task("GDP", "Some Task", 0));
+			this.tasks.Add(new Task("GDP", "Some Task", new TimeSpan()));
 
 			this.populateProjects();
+
+			//string json = LitJson.JsonMapper.ToJson(new TimeSpan());
         }
 
 		private void setButtonEnabled() {
@@ -71,7 +78,7 @@ namespace timer {
 			string project = this.comboBoxProject.Text;
 			string description = this.textBoxDescription.Text;
 			// in seconds
-			int duration = (this.dateTimePickerDuration.Value.Hour * 60 + this.dateTimePickerDuration.Value.Minute) * 60;
+			TimeSpan duration = new TimeSpan(this.dateTimePickerDuration.Value.Hour, this.dateTimePickerDuration.Value.Minute, 0);
 
 			this.tasks.Insert(0, new Task(project, description, duration));
 		}
@@ -91,6 +98,7 @@ namespace timer {
 			this.timer.Stop();
 			this.haveCurrentTask = false;
 			this.setButtonEnabled();
+			string json = LitJson.JsonMapper.ToJson(this.tasks[0].Serialize());
 		}
 
 		private void pauseTask() {
@@ -117,6 +125,16 @@ namespace timer {
 					this.stopTask();
 					break;
 			}
+		}
+
+		public SerializedForm Serialize() {
+			SerializedForm serializedForm = new SerializedForm();
+			List<Task.SerializedForm> tasks = new List<Task.SerializedForm>();
+			foreach (Task task in this.tasks) {
+				tasks.Add(task.Serialize());
+			}
+			serializedForm.Tasks = tasks.ToArray();
+			return serializedForm;
 		}
 
 		private void timer_Tick(object sender, EventArgs e) {

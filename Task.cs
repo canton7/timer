@@ -62,6 +62,7 @@ namespace timer {
 		public void Pause() {
 			this.state = States.PAUSED;
 			this.workTimes[0].FinishedAt = DateTime.Now;
+			this.finishedDuration += DateTime.Now - this.workTimes[0].StartedAt;
 		}
 
 		public void Resume() {

@@ -122,6 +122,7 @@
 			this.buttonPause.TabIndex = 3;
 			this.buttonPause.Text = "Pause";
 			this.buttonPause.UseVisualStyleBackColor = true;
+			this.buttonPause.Click += new System.EventHandler(this.buttonPause_Click);
 			// 
 			// buttonSave
 			// 

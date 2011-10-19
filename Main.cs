@@ -38,11 +38,19 @@ namespace timer {
 				case Task.States.NEW:
 					this.buttonStartStop.Text = "Start";
 					this.buttonPause.Enabled = false;
+					this.buttonPause.Text = "Pause";
 					this.buttonSave.Enabled = true;
 					break;
 				case Task.States.IN_PROGRESS:
 					this.buttonStartStop.Text = "Stop";
 					this.buttonPause.Enabled = true;
+					this.buttonPause.Text = "Pause";
+					this.buttonSave.Enabled = false;
+					break;
+				case Task.States.PAUSED:
+					this.buttonStartStop.Text = "Stop";
+					this.buttonPause.Enabled = true;
+					this.buttonPause.Text = "Resume";
 					this.buttonSave.Enabled = false;
 					break;
 				default:
@@ -85,6 +93,18 @@ namespace timer {
 			this.setButtonEnabled();
 		}
 
+		private void pauseTask() {
+			this.currentTask.Pause();
+			this.timer.Stop();
+			this.setButtonEnabled();
+		}
+
+		private void resumeTask() {
+			this.currentTask.Resume();
+			this.timer.Start();
+			this.setButtonEnabled();
+		}
+
 		private void buttonStartStop_Click(object sender, EventArgs e) {
 			if (!this.haveCurrentTask) {
 				this.createTask();
@@ -105,6 +125,19 @@ namespace timer {
 				return;
 			}
 			this.labelDuration.Text = this.currentTask.Duration.ToString("hh':'mm':'ss");
+		}
+
+		private void buttonPause_Click(object sender, EventArgs e) {
+			if (!this.haveCurrentTask)
+				return;
+			switch (this.currentTask.State) {
+				case Task.States.IN_PROGRESS:
+					this.pauseTask();
+					break;
+				case Task.States.PAUSED:
+					this.resumeTask();
+					break;
+			}
 		}
     }
 }

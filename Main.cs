@@ -31,15 +31,18 @@ namespace timer {
 		private void setButtonEnabled() {
 			if (!this.haveCurrentTask) {
 				this.buttonStartStop.Text = "Start";
+				this.progressBar.Style = ProgressBarStyle.Blocks;
 				return;
 			}
 
 			switch (this.taskList.CurrentState) {
 				case Task.States.STOPPED:
 					this.buttonStartStop.Text = "Start";
+					this.progressBar.Style = ProgressBarStyle.Blocks;
 					break;
 				case Task.States.IN_PROGRESS:
-					this.buttonStartStop.Text = "Stop";;
+					this.buttonStartStop.Text = "Stop";
+					this.progressBar.Style = ProgressBarStyle.Marquee;
 					break;
 				default:
 					break;

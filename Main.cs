@@ -16,6 +16,8 @@ namespace timer {
 
 		private FileHandler fileHandler;
 
+		private List<Task> listBoxTasksContents = new List<Task>();
+
 		public Main() {
 			InitializeComponent();
 			this.fileHandler = FileHandler.Instance;
@@ -73,7 +75,7 @@ namespace timer {
 			this.labelError.Visible = false;
 
 			// Assume they just want to continue the current task, if they didn't change it
-			if (project == this.taskList.CurrentTask.Project && description == this.taskList.CurrentTask.Description)
+			if (project == this.taskList.CurrentTask.Project && description == this.taskList.CurrentTask.Description && duration == this.taskList.CurrentTask.ExpectedTime)
 				return true;
 
 			this.taskList.AddTask(project, description, duration);
@@ -99,10 +101,17 @@ namespace timer {
 			this.fileHandler.SaveTasks(this.taskList.Serialize());
 		}
 
+		private void populateTaskInfo() {
+			this.textBoxDescription.Text = this.taskList.CurrentTask.Description;
+			this.dateTimePickerDuration.Value = new DateTime(1970, 1, 1, 0, 0, 0) + this.taskList.CurrentTask.ExpectedTime;
+		}
+
 		private void populateTaskList() {
 			string project = this.comboBoxProjectTasks.Text;
 
 			this.listBoxTasks.Items.Clear();
+			this.listBoxTasksContents.Clear();
+
 			string item;
 			foreach (Task task in this.taskList.GetProjectTasks(project)) {
 				if (task.ExpectedTime.Ticks == 0)
@@ -111,12 +120,18 @@ namespace timer {
 					item = String.Format("{0}/{1} - {2}", task.Duration.ToString("hh':'mm':'ss"), task.ExpectedTime.ToString("hh':'mm"), task.Description);
 
 				this.listBoxTasks.Items.Add(item);
+				// keep record for later
+				this.listBoxTasksContents.Add(task);
 			}
 		}
 
 		private void continueTask(Task task) {
 			this.stopTask();
-
+			this.taskList.SetCurrentTask(task);
+			// order of projects will have changed
+			this.populateProjects();
+			this.populateTaskInfo();
+			this.startTask();
 		}
 
 		private void timer_Tick(object sender, EventArgs e) {
@@ -159,7 +174,7 @@ namespace timer {
 				this.comboBoxProjectTasks.Items.Add(project);
 			}
 			if (this.taskList.Projects.Count > 0)
-				this.comboBoxProjectTasks.Text = this.taskList.Projects[0];
+				this.comboBoxProjectTasks.Text = (this.comboBoxProjectTasks.Items.Contains(this.comboBoxProject.Text)) ? this.comboBoxProject.Text : this.taskList.Projects[0];
 		}
 
 		private void comboBoxProject_TextChanged(object sender, EventArgs e) {
@@ -178,8 +193,10 @@ namespace timer {
 			this.stopTask();
 		}
 
-		private void buttonContinueTask_Click(object sender, EventArgs e) {
-
+		private void buttonContinueTask_Click(object sender, EventArgs e) {;
+			int index = this.listBoxTasks.SelectedIndex;
+			this.continueTask(this.listBoxTasksContents[index]);
+			this.tabControl1.SelectedIndex = 0;
 		}
     }
 }

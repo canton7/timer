@@ -105,6 +105,16 @@ namespace timer {
 			return tasks.ToArray();
 		}
 
+		public void SetCurrentTask(Task task) {
+			if (!this.tasks.Contains(task))
+				throw new Exception("Can't find that task when setting it as current");
+
+			// Take the task and stick it at the top
+			this.tasks.Remove(task);
+			this.tasks.Insert(0, task);
+			this.currentProjectFinishedTime = this.calcCurrentProjectFinishedTime();
+		}
+
 		public SerializedForm Serialize() {
 			SerializedForm serializedForm = new SerializedForm();
 			List<Task.SerializedForm> tasks = new List<Task.SerializedForm>();

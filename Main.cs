@@ -134,6 +134,21 @@ namespace timer {
 			this.startTask();
 		}
 
+		private void deleteTask(Task task) {
+			if (MessageBox.Show("Do you really want to delete this task?", "Really delete task?", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != System.Windows.Forms.DialogResult.OK)
+				return;
+			// Stop the task if it's the current one
+			bool currentTask = this.taskList.CurrentTask == task;
+			if (currentTask)
+				this.stopTask();
+			this.taskList.DeleteTask(task);
+			// If it was the current take, re-populate
+			this.populateProjects();
+			this.populateTaskInfo();
+			this.populateTaskList();
+			this.fileHandler.SaveTasks(this.taskList.Serialize());
+		}
+
 		private void timer_Tick(object sender, EventArgs e) {
 			if (!this.haveCurrentTask) {
 				this.timer.Stop();
@@ -197,6 +212,11 @@ namespace timer {
 			int index = this.listBoxTasks.SelectedIndex;
 			this.continueTask(this.listBoxTasksContents[index]);
 			this.tabControl1.SelectedIndex = 0;
+		}
+
+		private void buttonDeleteTask_Click(object sender, EventArgs e) {
+			int index = this.listBoxTasks.SelectedIndex;
+			this.deleteTask(this.listBoxTasksContents[index]);
 		}
     }
 }

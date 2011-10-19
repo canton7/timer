@@ -115,6 +115,13 @@ namespace timer {
 			this.currentProjectFinishedTime = this.calcCurrentProjectFinishedTime();
 		}
 
+		public void DeleteTask(Task task) {
+			if (!this.tasks.Contains(task))
+				throw new Exception("Can't find that task when deleteing");
+			this.tasks.Remove(task);
+			this.currentProjectFinishedTime = this.calcCurrentProjectFinishedTime();
+		}
+
 		public SerializedForm Serialize() {
 			SerializedForm serializedForm = new SerializedForm();
 			List<Task.SerializedForm> tasks = new List<Task.SerializedForm>();

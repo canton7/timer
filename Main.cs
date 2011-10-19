@@ -163,5 +163,10 @@ namespace timer {
 			this.labelDurationTotalTasks.Text = this.taskList.GetProjectTime(senderbox.Text).ToString("hh':'mm':'ss");
 			this.populateTaskList();
 		}
+
+		private void Main_FormClosing(object sender, FormClosingEventArgs e) {
+			// Also causes the current task to save
+			this.stopTask();
+		}
     }
 }

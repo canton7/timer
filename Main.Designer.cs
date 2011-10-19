@@ -245,6 +245,7 @@
 			this.Controls.Add(this.tabControl1);
 			this.Name = "Main";
 			this.Text = "Timer";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPageTime.ResumeLayout(false);
 			this.tabPageTime.PerformLayout();

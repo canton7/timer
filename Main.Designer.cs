@@ -44,6 +44,7 @@
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.labelError = new System.Windows.Forms.Label();
 			this.comboBoxProject = new System.Windows.Forms.ComboBox();
+			this.labelDurationTotal = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabPageTime.SuspendLayout();
 			this.tabPageTasks.SuspendLayout();
@@ -65,6 +66,7 @@
 			// 
 			// tabPageTime
 			// 
+			this.tabPageTime.Controls.Add(this.labelDurationTotal);
 			this.tabPageTime.Controls.Add(this.labelError);
 			this.tabPageTime.Controls.Add(this.labelDuration);
 			this.tabPageTime.Controls.Add(this.label1);
@@ -203,6 +205,16 @@
 			this.comboBoxProject.Name = "comboBoxProject";
 			this.comboBoxProject.Size = new System.Drawing.Size(239, 21);
 			this.comboBoxProject.TabIndex = 0;
+			this.comboBoxProject.TextChanged += new System.EventHandler(this.comboBoxProject_TextChanged);
+			// 
+			// labelDurationTotal
+			// 
+			this.labelDurationTotal.AutoSize = true;
+			this.labelDurationTotal.Location = new System.Drawing.Point(130, 143);
+			this.labelDurationTotal.Name = "labelDurationTotal";
+			this.labelDurationTotal.Size = new System.Drawing.Size(49, 13);
+			this.labelDurationTotal.TabIndex = 11;
+			this.labelDurationTotal.Text = "00:00:00";
 			// 
 			// Main
 			// 
@@ -238,6 +250,7 @@
 		private System.Windows.Forms.ComboBox comboBoxProjectList;
 		private System.Windows.Forms.Label labelError;
 		private System.Windows.Forms.ComboBox comboBoxProject;
+		private System.Windows.Forms.Label labelDurationTotal;
     }
 }
 

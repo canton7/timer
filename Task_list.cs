@@ -26,8 +26,15 @@ namespace timer {
 		public List<string> Projects {
 			get { return this.projects; }
 		}
+
 		public string CurrentProject {
 			get { return (this.tasks.Count > 0) ? this.tasks[0].Project : ""; }
+		}
+
+		// Cache of duration for all tasks in current project except current task
+		private TimeSpan currentProjectFinishedTime;
+		public TimeSpan CurrentProjectTime {
+			get { return this.currentProjectFinishedTime + this.tasks[0].Duration; }
 		}
 
 		public class SerializedForm {
@@ -42,7 +49,8 @@ namespace timer {
 				return;
 			this.Unserialize(serializedForm);
 			foreach (Task task in this.tasks) {
-				this.projects.Add(task.Project);
+				if (!this.projects.Contains(task.Project))
+					this.projects.Add(task.Project);
 			}
 		}
 
@@ -50,6 +58,7 @@ namespace timer {
 			this.tasks.Insert(0, new Task(project, description, duration));
 			if (!this.projects.Contains(project))
 				this.projects.Add(project);
+			this.currentProjectFinishedTime = this.calcCurrentProjectFinishedTime();
 		}
 
 		public void StartCurrent() {
@@ -68,6 +77,29 @@ namespace timer {
 			this.tasks[0].Resume();
 		}
 
+		private TimeSpan calcCurrentProjectFinishedTime() {
+			TimeSpan timespan = new TimeSpan(0);
+			foreach (Task task in this.tasks) {
+				if (task.Project != this.CurrentProject)
+					continue;
+				// Don't include current task, as this is updated so can't be cached
+				if (task == this.tasks[0])
+					continue;
+				timespan += task.Duration;
+			}
+			return timespan;
+		}
+
+		public TimeSpan GetProjectTime(string project) {
+			TimeSpan timespan = new TimeSpan(0);
+			foreach (Task task in this.tasks) {
+				if (task.Project != project)
+					continue;
+				timespan += task.Duration;
+			}
+			return timespan;
+		}
+
 		public SerializedForm Serialize() {
 			SerializedForm serializedForm = new SerializedForm();
 			List<Task.SerializedForm> tasks = new List<Task.SerializedForm>();
@@ -77,6 +109,7 @@ namespace timer {
 			serializedForm.Tasks = tasks.ToArray();
 			return serializedForm;
 		}
+
 		public void Unserialize(SerializedForm serializedForm) {
 			foreach (Task.SerializedForm serializedTask in serializedForm.Tasks) {
 				this.tasks.Add(new Task(serializedTask));

@@ -24,7 +24,7 @@ namespace timer {
 		private TimeSpan finishedDuration;
 
 		public TimeSpan Duration {
-			get { return this.finishedDuration + ((this.State == States.FINISHED || this.workTimes.Count == 0) ? new TimeSpan() : DateTime.Now - this.workTimes[0].StartedAt); }
+			get { return this.finishedDuration + ((this.workTimes.Count == 0) ? new TimeSpan() : DateTime.Now - this.workTimes[0].StartedAt); }
 		}
 
 		private TimeSpan expectedTime;

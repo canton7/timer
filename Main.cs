@@ -126,6 +126,7 @@ namespace timer {
 				return;
 			}
 			this.labelDuration.Text = this.taskList.CurrentTask.Duration.ToString("hh':'mm':'ss");
+			this.labelDurationTotal.Text = this.taskList.CurrentProjectTime.ToString("hh':'mm':'ss");
 		}
 
 		private void buttonStartStop_Click(object sender, EventArgs e) {
@@ -167,6 +168,11 @@ namespace timer {
 			}
 			if (this.taskList.Projects.Count > 0)
 				this.comboBoxProjectList.Text = this.taskList.Projects[0];
+		}
+
+		private void comboBoxProject_TextChanged(object sender, EventArgs e) {
+			string project = (sender as ComboBox).Text;
+			this.labelDurationTotal.Text = this.taskList.GetProjectTime(project).ToString("hh':'mm':'ss");
 		}
     }
 }

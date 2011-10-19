@@ -35,7 +35,13 @@ namespace timer {
 		}
 
 		public TaskList() {
+		}
 
+		public TaskList(SerializedForm serializedForm) {
+			this.Unserialize(serializedForm);
+			foreach (Task task in this.tasks) {
+				this.projects.Add(task.Project);
+			}
 		}
 
 		public void AddTask(string project, string description, TimeSpan duration) {
@@ -68,6 +74,11 @@ namespace timer {
 			}
 			serializedForm.Tasks = tasks.ToArray();
 			return serializedForm;
+		}
+		public void Unserialize(SerializedForm serializedForm) {
+			foreach (Task.SerializedForm serializedTask in serializedForm.Tasks) {
+				this.tasks.Add(new Task(serializedTask));
+			}
 		}
 	}
 }

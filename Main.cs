@@ -20,7 +20,7 @@ namespace timer {
 			InitializeComponent();
 			this.fileHandler = FileHandler.Instance;
 
-			this.taskList = new TaskList();
+			this.taskList = new TaskList(this.fileHandler.LoadTasks());
 			this.populateProjects();
 
 			//string json = LitJson.JsonMapper.ToJson(new TimeSpan());

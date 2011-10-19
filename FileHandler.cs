@@ -31,5 +31,12 @@ namespace timer {
 			sr.Close();
 		}
 
+		public TaskList.SerializedForm LoadTasks() {
+			StreamReader sr = new StreamReader("tasks.json");
+			TaskList.SerializedForm serializedForm = JsonMapper.ToObject<TaskList.SerializedForm>(sr.ReadToEnd());
+			sr.Close();
+			return serializedForm;
+		}
+
 	}
 }

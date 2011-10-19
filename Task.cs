@@ -49,6 +49,10 @@ namespace timer {
 				this.StartedAt = DateTime.Now;
 				this.FinishedAt = null;
 			}
+			public WorkTime(SerializedForm serializedForm) {
+				this.StartedAt = DateTime.Parse(serializedForm.StartedAt);
+				this.FinishedAt = DateTime.Parse(serializedForm.FinishedAt);
+			}
 
 			public SerializedForm Serialize() {
 				return new SerializedForm {
@@ -66,8 +70,9 @@ namespace timer {
 			this.expectedTime = expectedTime;
 		}
 
-		public Task(string json) {
-			//JsonReader reader = new JsonReader(json);
+		public Task(SerializedForm serializedForm) {
+			this.state = States.FINISHED;
+			this.Unserialize(serializedForm);
 		}
 
 		public void Start() {
@@ -105,6 +110,16 @@ namespace timer {
 			}
 			serializedForm.WorkTimes = workTimes.ToArray();
 			return serializedForm;
+		}
+
+		public void Unserialize(SerializedForm serializedForm) {
+			this.Project = serializedForm.Project;
+			this.Description = serializedForm.Description;
+			string[] parts = serializedForm.ExpectedTime.Split(':');
+			this.expectedTime = new TimeSpan(int.Parse(parts[0]), int.Parse(parts[1]), 0);
+			foreach (WorkTime.SerializedForm serializedWork in serializedForm.WorkTimes) {
+				this.workTimes.Add(new WorkTime(serializedWork));
+			}
 		}
 	}
 }

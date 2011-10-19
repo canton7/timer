@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPageTime = new System.Windows.Forms.TabPage();
 			this.comboBoxProject = new System.Windows.Forms.ComboBox();
@@ -38,6 +39,8 @@
 			this.buttonSave = new System.Windows.Forms.Button();
 			this.dateTimePickerDuration = new System.Windows.Forms.DateTimePicker();
 			this.label1 = new System.Windows.Forms.Label();
+			this.labelDuration = new System.Windows.Forms.Label();
+			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.tabControl1.SuspendLayout();
 			this.tabPageTime.SuspendLayout();
 			this.SuspendLayout();
@@ -57,6 +60,7 @@
 			// 
 			// tabPageTime
 			// 
+			this.tabPageTime.Controls.Add(this.labelDuration);
 			this.tabPageTime.Controls.Add(this.label1);
 			this.tabPageTime.Controls.Add(this.dateTimePickerDuration);
 			this.tabPageTime.Controls.Add(this.buttonSave);
@@ -148,6 +152,20 @@
 			this.label1.TabIndex = 7;
 			this.label1.Text = "Duration";
 			// 
+			// labelDuration
+			// 
+			this.labelDuration.AutoSize = true;
+			this.labelDuration.Location = new System.Drawing.Point(12, 143);
+			this.labelDuration.Name = "labelDuration";
+			this.labelDuration.Size = new System.Drawing.Size(49, 13);
+			this.labelDuration.TabIndex = 8;
+			this.labelDuration.Text = "00:00:00";
+			// 
+			// timer
+			// 
+			this.timer.Interval = 1000;
+			this.timer.Tick += new System.EventHandler(this.timer_Tick);
+			// 
 			// Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,6 +193,8 @@
 		private System.Windows.Forms.DateTimePicker dateTimePickerDuration;
 		private System.Windows.Forms.Button buttonSave;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label labelDuration;
+		private System.Windows.Forms.Timer timer;
     }
 }
 

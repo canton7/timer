@@ -30,6 +30,12 @@ namespace timer {
 		}
 		private List<WorkTime> workTimes = new List<WorkTime>();
 
+		private TimeSpan finishedDuration;
+
+		public TimeSpan Duration {
+			get { return this.finishedDuration + (this.State == States.FINISHED ? new TimeSpan() : DateTime.Now - this.workTimes[0].StartedAt); }
+		}
+
 		private int expectedTime;
 
 		public Task(string project, string desciption, int expectedTime) {
@@ -50,6 +56,7 @@ namespace timer {
 		public void Finish() {
 			this.state = States.FINISHED;
 			this.workTimes[0].FinishedAt = DateTime.Now;
+			this.finishedDuration += DateTime.Now - this.workTimes[0].StartedAt;
 		}
 
 		public void Pause() {

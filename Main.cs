@@ -16,6 +16,8 @@ namespace timer {
 			}
 		}
 
+		private bool haveCurrentTask = false;
+
 		public Main() {
 			InitializeComponent();
 
@@ -24,12 +26,8 @@ namespace timer {
 			this.populateProjects();
         }
 
-		private bool haveCurrentTask() {
-			return false;
-		}
-
 		private void setButtonEnabled() {
-			if (!this.haveCurrentTask()) {
+			if (!this.haveCurrentTask) {
 				this.buttonStartStop.Text = "Start";
 				this.buttonPause.Enabled = false;
 				this.buttonSave.Enabled = true;
@@ -74,13 +72,39 @@ namespace timer {
 			if (this.currentTask == null)
 				throw new Exception("No task to start");
 			this.currentTask.Start();
+			this.haveCurrentTask = true;
+			this.labelDuration.Text = "00:00:00";
+			this.timer.Start();
+			this.setButtonEnabled();
+		}
+
+		private void stopTask() {
+			this.currentTask.Finish();
+			this.timer.Stop();
+			this.haveCurrentTask = false;
+			this.setButtonEnabled();
 		}
 
 		private void buttonStartStop_Click(object sender, EventArgs e) {
-			if (!this.haveCurrentTask()) {
+			if (!this.haveCurrentTask) {
 				this.createTask();
 			}
-			this.startTask();
+			switch (this.currentTask.State) {
+				case Task.States.NEW:
+					this.startTask();
+					break;
+				case Task.States.IN_PROGRESS:
+					this.stopTask();
+					break;
+			}
+		}
+
+		private void timer_Tick(object sender, EventArgs e) {
+			if (!this.haveCurrentTask) {
+				this.timer.Stop();
+				return;
+			}
+			this.labelDuration.Text = this.currentTask.Duration.ToString("hh':'mm':'ss");
 		}
     }
 }

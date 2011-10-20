@@ -14,6 +14,10 @@ namespace timer {
 			get { return this.tasks[0]; }
 		}
 
+		public bool HaveTasks {
+			get { return this.tasks.Count > 0; }
+		}
+
 		public Task.States CurrentState {
 			get { return this.tasks[0].State; }
 		}
@@ -54,7 +58,7 @@ namespace timer {
 
 		public void AddTask(string project, string description, TimeSpan duration) {
 			// Don't replace the top-of-the-list task if it's currently running
-			int index = (this.tasks[0].State == Task.States.IN_PROGRESS) ? 1 : 0;
+			int index = (this.tasks.Count > 0 && this.tasks[0].State == Task.States.IN_PROGRESS) ? 1 : 0;
 			this.tasks.Insert(index, new Task(project, description, duration));
 			if (!this.projects.Contains(project))
 				this.projects.Insert(index, project);

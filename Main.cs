@@ -82,7 +82,8 @@ namespace timer {
 			this.labelError.Visible = false;
 
 			// Assume they just want to continue the current task, if they didn't change it
-			if (project == this.taskList.CurrentTask.Project && description == this.taskList.CurrentTask.Description && duration == this.taskList.CurrentTask.ExpectedTime)
+			if (this.taskList.HaveTasks && project == this.taskList.CurrentTask.Project && description == this.taskList.CurrentTask.Description && 
+					duration == this.taskList.CurrentTask.ExpectedTime)
 				return true;
 
 			this.taskList.AddTask(project, description, duration);
@@ -252,11 +253,12 @@ namespace timer {
 		private void comboBoxProject_TextChanged(object sender, EventArgs e) {
 			ComboBox senderbox = sender as ComboBox;
 			this.labelDurationTotal.Text = this.taskList.GetProjectTime(senderbox.Text).ToString("hh':'mm':'ss");
+			if (this.haveCurrentTask)
+				this.labelDuration.Text = this.taskList.CurrentTask.Duration.ToString("hh':'mm':'ss");
 		}
 
 		private void comboBoxProjectTasks_SelectedIndexChanged(object sender, EventArgs e) {
 			ComboBox senderbox = sender as ComboBox;
-			this.labelDurationTotalTasks.Text = this.taskList.GetProjectTime(senderbox.Text).ToString("hh':'mm':'ss");
 			this.populateTaskList();
 		}
 

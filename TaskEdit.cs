@@ -39,6 +39,8 @@ namespace timer {
 			foreach (Task.WorkTime workTime in this.task.WorkTimes) {
 				this.listBoxWorkTimes.Items.Add(String.Format("{0} for {1}", workTime.StartedAt, workTime.StoppedAt - workTime.StartedAt));
 			}
+
+			this.labelTotalDuration.Text = this.task.Duration.ToString("hh':'mm':'ss");
 		}
 
 		private void populateFromDuration(Task.WorkTime workTime) {
@@ -59,6 +61,8 @@ namespace timer {
 			// Find the moved task, and select
 			int index = this.task.WorkTimes.FindIndex(x => x.StartedAt == workTime.StartedAt && x.StoppedAt == workTime.StoppedAt);
 			this.listBoxWorkTimes.SelectedIndex = index;
+			this.task.EditWorkTime();
+			this.labelTotalDuration.Text = this.task.Duration.ToString("hh':'mm':'ss");
 		}
 
 		private void addWorkTime() {
@@ -70,6 +74,7 @@ namespace timer {
 			// Find the new task, and select
 			int index = this.task.WorkTimes.FindIndex(x => x.StartedAt == workTime.StartedAt && x.StoppedAt == workTime.StoppedAt);
 			this.listBoxWorkTimes.SelectedIndex = index;
+			this.labelTotalDuration.Text = this.task.Duration.ToString("hh':'mm':'ss");
 		}
 
 		private void listBoxWorkTimes_SelectedIndexChanged(object sender, EventArgs e) {

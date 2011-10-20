@@ -119,11 +119,25 @@ namespace timer {
 
 		public void DeleteWorkTime(WorkTime workTime) {
 			this.workTimes.Remove(workTime);
+			this.updateFinishedDuration();
 		}
 
 		public void AddWorkTime(WorkTime workTime) {
 			this.workTimes.Add(workTime);
 			this.SortWorkTimes();
+			this.updateFinishedDuration();
+		}
+
+		public void EditWorkTime() {
+			// The user is expected to edit the worktimes themselves
+			this.updateFinishedDuration();
+		}
+
+		public void updateFinishedDuration() {
+			this.finishedDuration = new TimeSpan(0);
+			foreach (WorkTime workTime in this.workTimes) {
+				this.finishedDuration += workTime.Duration;
+			}
 		}
 
 		public SerializedForm Serialize() {
@@ -151,12 +165,7 @@ namespace timer {
 			foreach (WorkTime.SerializedForm serializedWork in serializedForm.WorkTimes) {
 				this.workTimes.Add(new WorkTime(serializedWork));
 			}
-
-			this.finishedDuration = new TimeSpan(0);
-			foreach (WorkTime workTime in this.workTimes) {
-				this.finishedDuration += workTime.Duration;
-			}
-
+			this.updateFinishedDuration();
 		}
 	}
 }

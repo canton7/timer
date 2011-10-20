@@ -276,6 +276,13 @@ namespace timer {
 			this.continueTask(this.listBoxTasksContents[index]);
 			this.tabControl1.SelectedIndex = 0;
 		}
+		private void listBoxTasks_MouseDoubleClick(object sender, MouseEventArgs e) {
+			int index = this.listBoxTasks.SelectedIndex;
+			if (index == -1)
+				return;
+			this.continueTask(this.listBoxTasksContents[index]);
+			this.tabControl1.SelectedIndex = 0;
+		}
 
 		private void buttonEditTask_Click(object sender, EventArgs e) {
 			int index = this.listBoxTasks.SelectedIndex;

@@ -256,6 +256,7 @@
 			this.listBoxTasks.Name = "listBoxTasks";
 			this.listBoxTasks.Size = new System.Drawing.Size(224, 95);
 			this.listBoxTasks.TabIndex = 4;
+			this.listBoxTasks.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxTasks_MouseDoubleClick);
 			// 
 			// buttonEditTask
 			// 

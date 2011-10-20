@@ -34,6 +34,8 @@ namespace timer {
 			this.populateProjects();
 
 			this.alarm = new SoundPlayer(this.fileHandler.AlarmFile);
+
+			this.updateIconText();
         }
 
 		private void setButtonEnabled() {
@@ -89,7 +91,7 @@ namespace timer {
 			this.labelError.Visible = false;
 
 			// Assume they just want to continue the current task, if they didn't change it
-			if (this.taskList.HaveTasks && project == this.taskList.CurrentTask.Project && description == this.taskList.CurrentTask.Description) {
+			if (this.canContinueCurrentTask()) {
 				// If the duration changed, assume they want to edit it
 				if (duration != this.taskList.CurrentTask.ExpectedTime) {
 					this.taskList.CurrentTask.ExpectedTime = duration;
@@ -101,6 +103,12 @@ namespace timer {
 			this.taskList.AddTask(project, description, duration);
 			this.populateProjects();
 			return true;
+		}
+
+		private bool canContinueCurrentTask() {
+			string project = this.comboBoxProject.Text.Trim();
+			string description = this.textBoxDescription.Text.Trim();
+			return this.taskList.HaveTasks && project == this.taskList.CurrentProject && description == this.taskList.CurrentTask.Description;
 		}
 
 		private void startTask() {
@@ -204,6 +212,7 @@ namespace timer {
 			}
 			this.fileHandler.SaveTasks(this.taskList.Serialize());
 			this.TopMost = wasOnTop;
+
 		}
 
 		private void startAlarm() {
@@ -229,6 +238,13 @@ namespace timer {
 			this.checkBoxOnTop.Checked = this.settings.OnTop;
 		}
 
+		private void updateIconText() {
+			if (this.haveCurrentTask)
+				this.notifyIcon.Text = String.Format("{0} - {1}", this.labelDuration.Text, this.taskList.CurrentTask.Description);
+			else
+				this.notifyIcon.Text = String.Format("STOPPED - {0}", this.textBoxDescription.Text);
+		}
+
 		private void timer_Tick(object sender, EventArgs e) {
 			if (!this.haveCurrentTask) {
 				this.timer.Stop();
@@ -236,6 +252,7 @@ namespace timer {
 			}
 			this.labelDuration.Text = this.taskList.CurrentTask.Duration.ToString("hh':'mm':'ss");
 			this.labelDurationTotal.Text = this.taskList.CurrentProjectTime.ToString("hh':'mm':'ss");
+			this.updateIconText();
 
 			if (this.taskList.CurrentTask.Duration > this.taskList.CurrentTask.ExpectedTime && !this.alarmSounding && !this.taskList.CurrentTask.SoundedAlarm)
 				this.startAlarm();
@@ -249,6 +266,10 @@ namespace timer {
 		}
 
 		private void buttonStartStop_Click(object sender, EventArgs e) {
+			this.startStopClick();
+		}
+
+		private void startStopClick() {
 			if (this.alarmSounding)
 				this.stopAlarm();
 
@@ -264,6 +285,7 @@ namespace timer {
 					this.stopTask();
 					break;
 			}
+			this.updateIconText();
 		}
 
 		private void buttonSave_Click(object sender, EventArgs e) {
@@ -336,6 +358,39 @@ namespace timer {
 			this.settings.OnTop = (sender as CheckBox).Checked;
 			this.fileHandler.SaveSettings(this.settings.Serialize());
 			this.TopMost = this.settings.OnTop;
+		}
+
+		// Annoyance in that doubleclicks are picked up by single click also
+		// Therefore use timer
+		private void notifyIcon_Click(object sender, EventArgs e) {
+			this.timerClick.Interval = SystemInformation.DoubleClickTime;
+			this.timerClick.Start();
+		}
+		private void notifyIcon_DoubleClick(object sender, EventArgs e) {
+			this.timerClick.Stop();
+			if (this.WindowState == FormWindowState.Minimized)
+				this.WindowState = FormWindowState.Normal;
+			else
+				this.WindowState = FormWindowState.Minimized;
+		}
+		private void timerClick_Tick(object sender, EventArgs e) {
+			this.startStopClick();
+			this.timerClick.Stop();
+		}
+
+		private void showHideToolStripMenuItemShowHide_Click(object sender, EventArgs e) {
+			if (this.WindowState == FormWindowState.Minimized)
+				this.WindowState = FormWindowState.Normal;
+			else
+				this.WindowState = FormWindowState.Minimized;
+		}
+
+		private void startStopToolStripMenuItemStartStop_Click(object sender, EventArgs e) {
+			this.startStopClick();
+		}
+
+		private void exitToolStripMenuItemExit_Click(object sender, EventArgs e) {
+			this.Close();
 		}
     }
 }

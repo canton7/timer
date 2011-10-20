@@ -52,16 +52,23 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.comboBoxProjectTasks = new System.Windows.Forms.ComboBox();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.checkBoxOnTop = new System.Windows.Forms.CheckBox();
+			this.checkBoxAlarm = new System.Windows.Forms.CheckBox();
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.timerAlarm = new System.Windows.Forms.Timer(this.components);
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.checkBoxAlarm = new System.Windows.Forms.CheckBox();
-			this.checkBoxOnTop = new System.Windows.Forms.CheckBox();
+			this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+			this.contextMenuStripNotify = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.showHideToolStripMenuItemShowHide = new System.Windows.Forms.ToolStripMenuItem();
+			this.startStopToolStripMenuItemStartStop = new System.Windows.Forms.ToolStripMenuItem();
+			this.exitToolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
+			this.timerClick = new System.Windows.Forms.Timer(this.components);
 			this.tabControl1.SuspendLayout();
 			this.tabPageTime.SuspendLayout();
 			this.tabPageTasks.SuspendLayout();
 			this.tabPage1.SuspendLayout();
+			this.contextMenuStripNotify.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -322,6 +329,40 @@
 			this.comboBoxProjectTasks.TabIndex = 0;
 			this.comboBoxProjectTasks.SelectedIndexChanged += new System.EventHandler(this.comboBoxProjectTasks_SelectedIndexChanged);
 			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.checkBoxOnTop);
+			this.tabPage1.Controls.Add(this.checkBoxAlarm);
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(230, 209);
+			this.tabPage1.TabIndex = 2;
+			this.tabPage1.Text = "Settings";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// checkBoxOnTop
+			// 
+			this.checkBoxOnTop.AutoSize = true;
+			this.checkBoxOnTop.Location = new System.Drawing.Point(9, 43);
+			this.checkBoxOnTop.Name = "checkBoxOnTop";
+			this.checkBoxOnTop.Size = new System.Drawing.Size(125, 17);
+			this.checkBoxOnTop.TabIndex = 1;
+			this.checkBoxOnTop.Text = "Show window on top";
+			this.checkBoxOnTop.UseVisualStyleBackColor = true;
+			this.checkBoxOnTop.CheckedChanged += new System.EventHandler(this.checkBoxOnTop_CheckedChanged);
+			// 
+			// checkBoxAlarm
+			// 
+			this.checkBoxAlarm.AutoSize = true;
+			this.checkBoxAlarm.Location = new System.Drawing.Point(9, 19);
+			this.checkBoxAlarm.Name = "checkBoxAlarm";
+			this.checkBoxAlarm.Size = new System.Drawing.Size(174, 17);
+			this.checkBoxAlarm.TabIndex = 0;
+			this.checkBoxAlarm.Text = "Sound alarm when task time up";
+			this.checkBoxAlarm.UseVisualStyleBackColor = true;
+			this.checkBoxAlarm.CheckedChanged += new System.EventHandler(this.checkBoxAlarm_CheckedChanged);
+			// 
 			// timer
 			// 
 			this.timer.Interval = 1000;
@@ -341,39 +382,48 @@
 			this.timerAlarm.Interval = 250;
 			this.timerAlarm.Tick += new System.EventHandler(this.timerAlarm_Tick);
 			// 
-			// tabPage1
+			// notifyIcon
 			// 
-			this.tabPage1.Controls.Add(this.checkBoxOnTop);
-			this.tabPage1.Controls.Add(this.checkBoxAlarm);
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(230, 209);
-			this.tabPage1.TabIndex = 2;
-			this.tabPage1.Text = "Settings";
-			this.tabPage1.UseVisualStyleBackColor = true;
+			this.notifyIcon.ContextMenuStrip = this.contextMenuStripNotify;
+			this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+			this.notifyIcon.Text = "Testy Text";
+			this.notifyIcon.Visible = true;
+			this.notifyIcon.Click += new System.EventHandler(this.notifyIcon_Click);
+			this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
 			// 
-			// checkBoxAlarm
+			// contextMenuStripNotify
 			// 
-			this.checkBoxAlarm.AutoSize = true;
-			this.checkBoxAlarm.Location = new System.Drawing.Point(9, 19);
-			this.checkBoxAlarm.Name = "checkBoxAlarm";
-			this.checkBoxAlarm.Size = new System.Drawing.Size(174, 17);
-			this.checkBoxAlarm.TabIndex = 0;
-			this.checkBoxAlarm.Text = "Sound alarm when task time up";
-			this.checkBoxAlarm.UseVisualStyleBackColor = true;
-			this.checkBoxAlarm.CheckedChanged += new System.EventHandler(this.checkBoxAlarm_CheckedChanged);
+			this.contextMenuStripNotify.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showHideToolStripMenuItemShowHide,
+            this.startStopToolStripMenuItemStartStop,
+            this.exitToolStripMenuItemExit});
+			this.contextMenuStripNotify.Name = "contextMenuStripNotify";
+			this.contextMenuStripNotify.Size = new System.Drawing.Size(134, 70);
 			// 
-			// checkBoxOnTop
+			// showHideToolStripMenuItemShowHide
 			// 
-			this.checkBoxOnTop.AutoSize = true;
-			this.checkBoxOnTop.Location = new System.Drawing.Point(9, 43);
-			this.checkBoxOnTop.Name = "checkBoxOnTop";
-			this.checkBoxOnTop.Size = new System.Drawing.Size(125, 17);
-			this.checkBoxOnTop.TabIndex = 1;
-			this.checkBoxOnTop.Text = "Show window on top";
-			this.checkBoxOnTop.UseVisualStyleBackColor = true;
-			this.checkBoxOnTop.CheckedChanged += new System.EventHandler(this.checkBoxOnTop_CheckedChanged);
+			this.showHideToolStripMenuItemShowHide.Name = "showHideToolStripMenuItemShowHide";
+			this.showHideToolStripMenuItemShowHide.Size = new System.Drawing.Size(133, 22);
+			this.showHideToolStripMenuItemShowHide.Text = "Show/Hide";
+			this.showHideToolStripMenuItemShowHide.Click += new System.EventHandler(this.showHideToolStripMenuItemShowHide_Click);
+			// 
+			// startStopToolStripMenuItemStartStop
+			// 
+			this.startStopToolStripMenuItemStartStop.Name = "startStopToolStripMenuItemStartStop";
+			this.startStopToolStripMenuItemStartStop.Size = new System.Drawing.Size(133, 22);
+			this.startStopToolStripMenuItemStartStop.Text = "Start/Stop";
+			this.startStopToolStripMenuItemStartStop.Click += new System.EventHandler(this.startStopToolStripMenuItemStartStop_Click);
+			// 
+			// exitToolStripMenuItemExit
+			// 
+			this.exitToolStripMenuItemExit.Name = "exitToolStripMenuItemExit";
+			this.exitToolStripMenuItemExit.Size = new System.Drawing.Size(133, 22);
+			this.exitToolStripMenuItemExit.Text = "Exit";
+			this.exitToolStripMenuItemExit.Click += new System.EventHandler(this.exitToolStripMenuItemExit_Click);
+			// 
+			// timerClick
+			// 
+			this.timerClick.Tick += new System.EventHandler(this.timerClick_Tick);
 			// 
 			// Main
 			// 
@@ -393,6 +443,7 @@
 			this.tabPageTasks.PerformLayout();
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
+			this.contextMenuStripNotify.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -427,6 +478,12 @@
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.CheckBox checkBoxOnTop;
 		private System.Windows.Forms.CheckBox checkBoxAlarm;
+		private System.Windows.Forms.NotifyIcon notifyIcon;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStripNotify;
+		private System.Windows.Forms.ToolStripMenuItem showHideToolStripMenuItemShowHide;
+		private System.Windows.Forms.ToolStripMenuItem startStopToolStripMenuItemStartStop;
+		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItemExit;
+		private System.Windows.Forms.Timer timerClick;
     }
 }
 

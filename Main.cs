@@ -30,6 +30,7 @@ namespace timer {
 
 			this.taskList = new TaskList(this.fileHandler.LoadTasks());
 			this.settings = new Settings(this.fileHandler.LoadSettings());
+			this.initSettings();
 			this.populateProjects();
 
 			this.alarm = new SoundPlayer(this.fileHandler.AlarmFile);
@@ -212,6 +213,11 @@ namespace timer {
 			this.timerAlarm.Stop();
 			this.alarmSounding = false;
 			this.buttonStartStop.BackColor = Color.Transparent;
+		}
+
+		private void initSettings() {
+			this.checkBoxAlarm.Checked = this.settings.Alarm;
+			this.checkBoxOnTop.Checked = this.settings.OnTop;
 		}
 
 		private void timer_Tick(object sender, EventArgs e) {

@@ -36,6 +36,7 @@ namespace timer {
 			this.alarm = new SoundPlayer(this.fileHandler.AlarmFile);
 
 			this.updateIconText();
+			this.notifyIcon.Visible = this.settings.Icon;
         }
 
 		private void setButtonEnabled() {
@@ -360,6 +361,12 @@ namespace timer {
 			this.TopMost = this.settings.OnTop;
 		}
 
+		private void checkBoxIcon_CheckedChanged(object sender, EventArgs e) {
+			this.settings.Icon = (sender as CheckBox).Checked;
+			this.fileHandler.SaveSettings(this.settings.Serialize());
+			this.notifyIcon.Visible = this.settings.Icon;
+		}
+
 		// Annoyance in that doubleclicks are picked up by single click also
 		// Therefore use timer
 		private void notifyIcon_Click(object sender, EventArgs e) {
@@ -392,5 +399,6 @@ namespace timer {
 		private void exitToolStripMenuItemExit_Click(object sender, EventArgs e) {
 			this.Close();
 		}
+
     }
 }

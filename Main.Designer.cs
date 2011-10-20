@@ -64,6 +64,7 @@
 			this.startStopToolStripMenuItemStartStop = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
 			this.timerClick = new System.Windows.Forms.Timer(this.components);
+			this.checkBoxIcon = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPageTime.SuspendLayout();
 			this.tabPageTasks.SuspendLayout();
@@ -331,6 +332,7 @@
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.checkBoxIcon);
 			this.tabPage1.Controls.Add(this.checkBoxOnTop);
 			this.tabPage1.Controls.Add(this.checkBoxAlarm);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -425,6 +427,17 @@
 			// 
 			this.timerClick.Tick += new System.EventHandler(this.timerClick_Tick);
 			// 
+			// checkBoxIcon
+			// 
+			this.checkBoxIcon.AutoSize = true;
+			this.checkBoxIcon.Location = new System.Drawing.Point(9, 66);
+			this.checkBoxIcon.Name = "checkBoxIcon";
+			this.checkBoxIcon.Size = new System.Drawing.Size(125, 17);
+			this.checkBoxIcon.TabIndex = 1;
+			this.checkBoxIcon.Text = "Show icon in taskbar";
+			this.checkBoxIcon.UseVisualStyleBackColor = true;
+			this.checkBoxIcon.CheckedChanged += new System.EventHandler(this.checkBoxIcon_CheckedChanged);
+			// 
 			// Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -484,6 +497,7 @@
 		private System.Windows.Forms.ToolStripMenuItem startStopToolStripMenuItemStartStop;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItemExit;
 		private System.Windows.Forms.Timer timerClick;
+		private System.Windows.Forms.CheckBox checkBoxIcon;
     }
 }
 

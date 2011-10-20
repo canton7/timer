@@ -348,6 +348,7 @@ namespace timer {
 			if (index == -1)
 				return;
 			this.deleteTask(this.listBoxTasksContents[index]);
+			this.listBoxTasks.SelectedIndex = index;
 		}
 
 		private void checkBoxAlarm_CheckedChanged(object sender, EventArgs e) {

@@ -85,9 +85,11 @@ namespace timer {
 		}
 
 		private void buttonDeleteWorkTime_Click(object sender, EventArgs e) {
-			if (this.listBoxWorkTimes.SelectedIndex == -1)
+			int index = this.listBoxWorkTimes.SelectedIndex;
+			if (index == -1)
 				return;
-			this.deleteWorkTime(this.task.WorkTimes[this.listBoxWorkTimes.SelectedIndex]);
+			this.deleteWorkTime(this.task.WorkTimes[index]);
+			this.listBoxWorkTimes.SelectedIndex = index;
 		}
 
 		private void buttonEdit_Click(object sender, EventArgs e) {

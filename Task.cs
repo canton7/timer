@@ -36,7 +36,12 @@ namespace timer {
 		private TimeSpan expectedTime;
 		public TimeSpan ExpectedTime {
 			get { return this.expectedTime; }
-			set { this.expectedTime = value; }
+			set {
+				// Force the alarm to go off again if we hit it
+				if (value > this.Duration)
+					this.SoundedAlarm = false;
+				this.expectedTime = value;
+			}
 		}
 
 		public struct SerializedForm {

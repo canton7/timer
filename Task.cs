@@ -48,7 +48,6 @@ namespace timer {
 			public string Project;
 			public string Description;
 			public string ExpectedTime;
-			public States State;
 			public bool SoundedAlarm;
 			public WorkTime.SerializedForm[] WorkTimes;
 		}
@@ -145,7 +144,6 @@ namespace timer {
 			serializedForm.Project = this.Project;
 			serializedForm.Description = this.Description;
 			serializedForm.ExpectedTime = this.expectedTime.ToString("hh':'mm':'ss");
-			serializedForm.State = this.state;
 			serializedForm.SoundedAlarm = this.SoundedAlarm;
 			List<WorkTime.SerializedForm> workTimes = new List<WorkTime.SerializedForm>();
 			foreach (WorkTime workTime in this.workTimes) {
@@ -158,7 +156,7 @@ namespace timer {
 		public void Unserialize(SerializedForm serializedForm) {
 			this.Project = serializedForm.Project;
 			this.Description = serializedForm.Description;
-			this.state = serializedForm.State;
+			this.state = States.IN_PROGRESS;
 			this.SoundedAlarm = serializedForm.SoundedAlarm;
 			string[] parts = serializedForm.ExpectedTime.Split(':');
 			this.expectedTime = new TimeSpan(int.Parse(parts[0]), int.Parse(parts[1]), int.Parse(parts[2]));

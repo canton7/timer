@@ -156,7 +156,7 @@ namespace timer {
 		public void Unserialize(SerializedForm serializedForm) {
 			this.Project = serializedForm.Project;
 			this.Description = serializedForm.Description;
-			this.state = States.IN_PROGRESS;
+			this.state = States.STOPPED;
 			this.SoundedAlarm = serializedForm.SoundedAlarm;
 			string[] parts = serializedForm.ExpectedTime.Split(':');
 			this.expectedTime = new TimeSpan(int.Parse(parts[0]), int.Parse(parts[1]), int.Parse(parts[2]));

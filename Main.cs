@@ -121,6 +121,7 @@ namespace timer {
 			if (this.taskList.HaveTasks) {
 				this.textBoxDescription.Text = this.taskList.CurrentTask.Description;
 				this.dateTimePickerDuration.Value = new DateTime(1970, 1, 1, 0, 0, 0) + this.taskList.CurrentTask.ExpectedTime;
+				this.labelDurationTotal.Text = this.taskList.CurrentTask.Duration.ToString("hh':'mm':'ss");
 			}
 		}
 
@@ -265,8 +266,8 @@ namespace timer {
 		private void comboBoxProject_TextChanged(object sender, EventArgs e) {
 			ComboBox senderbox = sender as ComboBox;
 			this.labelDurationTotal.Text = this.taskList.GetProjectTime(senderbox.Text).ToString("hh':'mm':'ss");
-			if (this.taskList.HaveTasks)
-				this.labelDuration.Text = this.taskList.CurrentTask.Duration.ToString("hh':'mm':'ss");
+			//if (this.taskList.HaveTasks)
+			//	this.labelDuration.Text = this.taskList.CurrentTask.Duration.ToString("hh':'mm':'ss");
 		}
 
 		private void comboBoxProjectTasks_SelectedIndexChanged(object sender, EventArgs e) {

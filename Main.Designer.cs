@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPageTime = new System.Windows.Forms.TabPage();
 			this.label5 = new System.Windows.Forms.Label();
@@ -341,6 +342,7 @@
 			this.ClientSize = new System.Drawing.Size(235, 247);
 			this.Controls.Add(this.progressBar);
 			this.Controls.Add(this.tabControl1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Main";
 			this.Text = "Timer";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);

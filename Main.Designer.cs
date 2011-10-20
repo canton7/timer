@@ -83,7 +83,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(238, 235);
+			this.tabControl1.Size = new System.Drawing.Size(225, 213);
 			this.tabControl1.TabIndex = 0;
 			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
@@ -103,7 +103,7 @@
 			this.tabPageTime.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTime.Name = "tabPageTime";
 			this.tabPageTime.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageTime.Size = new System.Drawing.Size(230, 209);
+			this.tabPageTime.Size = new System.Drawing.Size(217, 187);
 			this.tabPageTime.TabIndex = 0;
 			this.tabPageTime.Text = "Time";
 			this.tabPageTime.UseVisualStyleBackColor = true;
@@ -113,7 +113,7 @@
 			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.Location = new System.Drawing.Point(10, 182);
+			this.label5.Location = new System.Drawing.Point(6, 160);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(48, 20);
 			this.label5.TabIndex = 13;
@@ -133,7 +133,7 @@
 			this.labelDurationTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.labelDurationTotal.AutoSize = true;
 			this.labelDurationTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.labelDurationTotal.Location = new System.Drawing.Point(60, 182);
+			this.labelDurationTotal.Location = new System.Drawing.Point(56, 160);
 			this.labelDurationTotal.Name = "labelDurationTotal";
 			this.labelDurationTotal.Size = new System.Drawing.Size(71, 20);
 			this.labelDurationTotal.TabIndex = 11;
@@ -144,7 +144,7 @@
 			this.labelError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.labelError.AutoSize = true;
 			this.labelError.ForeColor = System.Drawing.Color.Red;
-			this.labelError.Location = new System.Drawing.Point(17, 133);
+			this.labelError.Location = new System.Drawing.Point(13, 111);
 			this.labelError.Name = "labelError";
 			this.labelError.Size = new System.Drawing.Size(34, 13);
 			this.labelError.TabIndex = 10;
@@ -156,7 +156,7 @@
 			this.labelDuration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.labelDuration.AutoSize = true;
 			this.labelDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.labelDuration.Location = new System.Drawing.Point(10, 146);
+			this.labelDuration.Location = new System.Drawing.Point(6, 124);
 			this.labelDuration.Name = "labelDuration";
 			this.labelDuration.Size = new System.Drawing.Size(127, 33);
 			this.labelDuration.TabIndex = 8;
@@ -166,18 +166,18 @@
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(9, 109);
+			this.label1.Location = new System.Drawing.Point(9, 87);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(47, 13);
+			this.label1.Size = new System.Drawing.Size(50, 13);
 			this.label1.TabIndex = 7;
-			this.label1.Text = "Duration";
+			this.label1.Text = "Duration:";
 			// 
 			// dateTimePickerDuration
 			// 
 			this.dateTimePickerDuration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.dateTimePickerDuration.CustomFormat = "HH:mm:ss";
 			this.dateTimePickerDuration.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dateTimePickerDuration.Location = new System.Drawing.Point(62, 106);
+			this.dateTimePickerDuration.Location = new System.Drawing.Point(62, 84);
 			this.dateTimePickerDuration.Name = "dateTimePickerDuration";
 			this.dateTimePickerDuration.ShowUpDown = true;
 			this.dateTimePickerDuration.Size = new System.Drawing.Size(69, 20);
@@ -187,9 +187,9 @@
 			// buttonSave
 			// 
 			this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonSave.Location = new System.Drawing.Point(146, 106);
+			this.buttonSave.Location = new System.Drawing.Point(137, 84);
 			this.buttonSave.Name = "buttonSave";
-			this.buttonSave.Size = new System.Drawing.Size(75, 23);
+			this.buttonSave.Size = new System.Drawing.Size(71, 23);
 			this.buttonSave.TabIndex = 4;
 			this.buttonSave.Text = "Save";
 			this.buttonSave.UseVisualStyleBackColor = true;
@@ -199,9 +199,9 @@
 			// 
 			this.buttonStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonStartStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.buttonStartStop.Location = new System.Drawing.Point(146, 146);
+			this.buttonStartStop.Location = new System.Drawing.Point(137, 124);
 			this.buttonStartStop.Name = "buttonStartStop";
-			this.buttonStartStop.Size = new System.Drawing.Size(75, 56);
+			this.buttonStartStop.Size = new System.Drawing.Size(71, 56);
 			this.buttonStartStop.TabIndex = 2;
 			this.buttonStartStop.Text = "Start";
 			this.buttonStartStop.UseVisualStyleBackColor = false;
@@ -215,7 +215,7 @@
 			this.textBoxDescription.Location = new System.Drawing.Point(8, 33);
 			this.textBoxDescription.Multiline = true;
 			this.textBoxDescription.Name = "textBoxDescription";
-			this.textBoxDescription.Size = new System.Drawing.Size(213, 67);
+			this.textBoxDescription.Size = new System.Drawing.Size(200, 45);
 			this.textBoxDescription.TabIndex = 1;
 			this.textBoxDescription.Text = "Task Description";
 			// 
@@ -226,7 +226,7 @@
 			this.comboBoxProject.FormattingEnabled = true;
 			this.comboBoxProject.Location = new System.Drawing.Point(57, 6);
 			this.comboBoxProject.Name = "comboBoxProject";
-			this.comboBoxProject.Size = new System.Drawing.Size(164, 21);
+			this.comboBoxProject.Size = new System.Drawing.Size(151, 21);
 			this.comboBoxProject.TabIndex = 0;
 			this.comboBoxProject.TextChanged += new System.EventHandler(this.comboBoxProject_TextChanged);
 			// 
@@ -243,7 +243,7 @@
 			this.tabPageTasks.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTasks.Name = "tabPageTasks";
 			this.tabPageTasks.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageTasks.Size = new System.Drawing.Size(230, 209);
+			this.tabPageTasks.Size = new System.Drawing.Size(217, 187);
 			this.tabPageTasks.TabIndex = 1;
 			this.tabPageTasks.Text = "Tasks";
 			this.tabPageTasks.UseVisualStyleBackColor = true;
@@ -251,9 +251,9 @@
 			// buttonDeleteTask
 			// 
 			this.buttonDeleteTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.buttonDeleteTask.Location = new System.Drawing.Point(148, 180);
+			this.buttonDeleteTask.Location = new System.Drawing.Point(155, 158);
 			this.buttonDeleteTask.Name = "buttonDeleteTask";
-			this.buttonDeleteTask.Size = new System.Drawing.Size(75, 23);
+			this.buttonDeleteTask.Size = new System.Drawing.Size(58, 23);
 			this.buttonDeleteTask.TabIndex = 1;
 			this.buttonDeleteTask.Text = "Delete";
 			this.buttonDeleteTask.UseVisualStyleBackColor = true;
@@ -265,18 +265,18 @@
 						| System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.listBoxTasks.FormattingEnabled = true;
-			this.listBoxTasks.Location = new System.Drawing.Point(3, 67);
+			this.listBoxTasks.Location = new System.Drawing.Point(3, 54);
 			this.listBoxTasks.Name = "listBoxTasks";
-			this.listBoxTasks.Size = new System.Drawing.Size(224, 95);
+			this.listBoxTasks.Size = new System.Drawing.Size(211, 95);
 			this.listBoxTasks.TabIndex = 4;
 			this.listBoxTasks.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxTasks_MouseDoubleClick);
 			// 
 			// buttonEditTask
 			// 
 			this.buttonEditTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.buttonEditTask.Location = new System.Drawing.Point(83, 180);
+			this.buttonEditTask.Location = new System.Drawing.Point(79, 158);
 			this.buttonEditTask.Name = "buttonEditTask";
-			this.buttonEditTask.Size = new System.Drawing.Size(59, 23);
+			this.buttonEditTask.Size = new System.Drawing.Size(58, 23);
 			this.buttonEditTask.TabIndex = 1;
 			this.buttonEditTask.Text = "Edit";
 			this.buttonEditTask.UseVisualStyleBackColor = true;
@@ -285,7 +285,7 @@
 			// labelDurationTotalTasks
 			// 
 			this.labelDurationTotalTasks.AutoSize = true;
-			this.labelDurationTotalTasks.Location = new System.Drawing.Point(50, 38);
+			this.labelDurationTotalTasks.Location = new System.Drawing.Point(50, 33);
 			this.labelDurationTotalTasks.Name = "labelDurationTotalTasks";
 			this.labelDurationTotalTasks.Size = new System.Drawing.Size(49, 13);
 			this.labelDurationTotalTasks.TabIndex = 3;
@@ -294,9 +294,9 @@
 			// buttonContinueTask
 			// 
 			this.buttonContinueTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.buttonContinueTask.Location = new System.Drawing.Point(6, 180);
+			this.buttonContinueTask.Location = new System.Drawing.Point(3, 158);
 			this.buttonContinueTask.Name = "buttonContinueTask";
-			this.buttonContinueTask.Size = new System.Drawing.Size(71, 23);
+			this.buttonContinueTask.Size = new System.Drawing.Size(58, 23);
 			this.buttonContinueTask.TabIndex = 1;
 			this.buttonContinueTask.Text = "Continue";
 			this.buttonContinueTask.UseVisualStyleBackColor = true;
@@ -305,7 +305,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(9, 38);
+			this.label3.Location = new System.Drawing.Point(9, 33);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(34, 13);
 			this.label3.TabIndex = 2;
@@ -338,7 +338,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(230, 209);
+			this.tabPage1.Size = new System.Drawing.Size(217, 189);
 			this.tabPage1.TabIndex = 2;
 			this.tabPage1.Text = "Settings";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -374,9 +374,9 @@
 			// 
 			this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
-			this.progressBar.Location = new System.Drawing.Point(2, 236);
+			this.progressBar.Location = new System.Drawing.Point(3, 214);
 			this.progressBar.Name = "progressBar";
-			this.progressBar.Size = new System.Drawing.Size(230, 10);
+			this.progressBar.Size = new System.Drawing.Size(217, 10);
 			this.progressBar.TabIndex = 14;
 			// 
 			// timerAlarm
@@ -442,9 +442,9 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(235, 247);
-			this.Controls.Add(this.progressBar);
+			this.ClientSize = new System.Drawing.Size(222, 225);
 			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.progressBar);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Main";
 			this.Text = "Timer";

@@ -9,8 +9,6 @@ namespace timer {
 	class FileHandler {
 		private static FileHandler instance;
 
-		private FileHandler() { }
-
 		public static FileHandler Instance {
 			get {
 				if (instance == null)
@@ -21,12 +19,26 @@ namespace timer {
 
 		// End of singleton stuff
 
+		private string taskFile;
+
+		private FileHandler() {
+			//First look in the local directory, then AppConfig
+			if (File.Exists("tasks.json"))
+				this.taskFile = "tasks.json";
+			else {
+				string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "timer");
+				if (!Directory.Exists(path))
+					Directory.CreateDirectory(path);
+				this.taskFile = Path.Combine(path, "tasks.json");
+			}
+		}
+
 		public void SaveTasks(TaskList.SerializedForm serializedForm) {
 			JsonWriter writer = new JsonWriter();
 			writer.PrettyPrint = true;
 			JsonMapper.ToJson(serializedForm, writer);
 			string json = writer.ToString();
-			StreamWriter sr = new StreamWriter("tasks.json");
+			StreamWriter sr = new StreamWriter(this.taskFile);
 			sr.Write(json);
 			sr.Close();
 		}
@@ -34,7 +46,7 @@ namespace timer {
 		public TaskList.SerializedForm LoadTasks() {
 			if (!File.Exists("tasks.json"))
 				return null;
-			StreamReader sr = new StreamReader("tasks.json");
+			StreamReader sr = new StreamReader(this.taskFile);
 			TaskList.SerializedForm serializedForm = JsonMapper.ToObject<TaskList.SerializedForm>(sr.ReadToEnd());
 			sr.Close();
 			return serializedForm;

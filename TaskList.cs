@@ -70,7 +70,8 @@ namespace timer {
 		}
 
 		public void StopCurrent() {
-			this.tasks[0].Stop();
+			if (this.tasks.Count > 0)
+				this.tasks[0].Stop();
 		}
 
 		private TimeSpan calcCurrentProjectFinishedTime() {

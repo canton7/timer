@@ -101,6 +101,8 @@ namespace timer {
 		}
 
 		public void Stop() {
+			if (this.state == States.STOPPED)
+				return;
 			this.state = States.STOPPED;
 			this.workTimes[0].StoppedAt = DateTime.Now;
 			this.finishedDuration += DateTime.Now - this.workTimes[0].StartedAt;

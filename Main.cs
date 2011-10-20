@@ -54,7 +54,10 @@ namespace timer {
 		}
 
 		private void populateProjects() {
-			this.comboBoxProject.Text = this.taskList.CurrentProject;
+			if (this.taskList.HaveTasks)
+				this.comboBoxProject.Text = this.taskList.CurrentProject;
+			else
+				this.comboBoxProject.Text = "Project Name";
 
 			this.comboBoxProject.Items.Clear();
 			foreach (string project in this.taskList.Projects) {
@@ -82,9 +85,14 @@ namespace timer {
 			this.labelError.Visible = false;
 
 			// Assume they just want to continue the current task, if they didn't change it
-			if (this.taskList.HaveTasks && project == this.taskList.CurrentTask.Project && description == this.taskList.CurrentTask.Description && 
-					duration == this.taskList.CurrentTask.ExpectedTime)
+			if (this.taskList.HaveTasks && project == this.taskList.CurrentTask.Project && description == this.taskList.CurrentTask.Description) {
+				// If the duration changed, assume they want to edit it
+				if (duration != this.taskList.CurrentTask.ExpectedTime) {
+					this.taskList.CurrentTask.ExpectedTime = duration;
+					this.fileHandler.SaveTasks(this.taskList.Serialize());
+				}
 				return true;
+			}
 
 			this.taskList.AddTask(project, description, duration);
 			this.populateProjects();

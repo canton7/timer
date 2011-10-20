@@ -204,7 +204,7 @@
 			this.textBoxDescription.Name = "textBoxDescription";
 			this.textBoxDescription.Size = new System.Drawing.Size(213, 67);
 			this.textBoxDescription.TabIndex = 1;
-			this.textBoxDescription.Text = "The task at hand";
+			this.textBoxDescription.Text = "Task Description";
 			// 
 			// comboBoxProject
 			// 

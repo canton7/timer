@@ -52,6 +52,7 @@ Section
 
   File "..\bin\Release\timer.exe"
   File "..\bin\Release\LitJson.dll"
+  File "..\alarm.wav"
   File "..\icon.ico"
 
   ;Store installation folder
@@ -90,6 +91,7 @@ Section "Uninstall"
   Delete "$INSTDIR\Timer.exe"
   Delete "$INSTDIR\LitJson.dll"
   Delete "$INSTDIR\icon.ico"
+  Delete "$INSTDIR\alarm.wav"
 
   Delete "$SMPROGRAMS\Timer.lnk"
   Delete "$DESKTOP\Timer.lnk"

@@ -13,6 +13,8 @@ namespace timer {
 	public partial class Main : Form {
 		private TaskList taskList;
 
+		private Settings settings;
+
 		private bool haveCurrentTask = false;
 
 		private FileHandler fileHandler;
@@ -27,6 +29,7 @@ namespace timer {
 			this.fileHandler = FileHandler.Instance;
 
 			this.taskList = new TaskList(this.fileHandler.LoadTasks());
+			this.settings = new Settings(this.fileHandler.LoadSettings());
 			this.populateProjects();
 
 			this.alarm = new SoundPlayer(this.fileHandler.AlarmFile);

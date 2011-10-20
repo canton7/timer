@@ -19,7 +19,10 @@ namespace timer {
 
 		// End of singleton stuff
 
+		private bool inTesting;
+
 		private string taskFile;
+		private string configFile;
 
 		private string alarmFile;
 		public string AlarmFile {
@@ -27,18 +30,22 @@ namespace timer {
 		}
 
 		private FileHandler() {
+			this.inTesting = (File.Exists("tasks.json") && File.Exists("config.json"));
+
 			//First look in the local directory, then AppConfig
-			if (File.Exists("tasks.json")) {
+			if (this.inTesting) {
 				this.taskFile = "tasks.json";
+				this.configFile = "config.json";
 			}
 			else {
 				string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "timer");
 				if (!Directory.Exists(path))
 					Directory.CreateDirectory(path);
 				this.taskFile = Path.Combine(path, "tasks.json");
-				this.alarmFile = "alarm.wav";
+				this.configFile = Path.Combine(path, "config.json");
 			}
 
+			// Do this seperately
 			if (File.Exists("alarm.wav"))
 				this.alarmFile = "alarm.wav";
 			else
@@ -60,6 +67,25 @@ namespace timer {
 				return null;
 			StreamReader sr = new StreamReader(this.taskFile);
 			TaskList.SerializedForm serializedForm = JsonMapper.ToObject<TaskList.SerializedForm>(sr.ReadToEnd());
+			sr.Close();
+			return serializedForm;
+		}
+
+		public void SaveSettings(Settings.SerializedForm serializedForm) {
+			JsonWriter writer = new JsonWriter();
+			writer.PrettyPrint = true;
+			JsonMapper.ToJson(serializedForm, writer);
+			string json = writer.ToString();
+			StreamWriter sr = new StreamWriter(this.configFile);
+			sr.Write(json);
+			sr.Close();
+		}
+
+		public Settings.SerializedForm LoadSettings() {
+			if (!File.Exists(this.configFile))
+				return null;
+			StreamReader sr = new StreamReader(this.configFile);
+			Settings.SerializedForm serializedForm = JsonMapper.ToObject<Settings.SerializedForm>(sr.ReadToEnd());
 			sr.Close();
 			return serializedForm;
 		}

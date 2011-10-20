@@ -21,16 +21,28 @@ namespace timer {
 
 		private string taskFile;
 
+		private string alarmFile;
+		public string AlarmFile {
+			get { return this.alarmFile; }
+		}
+
 		private FileHandler() {
 			//First look in the local directory, then AppConfig
-			if (File.Exists("tasks.json"))
+			if (File.Exists("tasks.json")) {
 				this.taskFile = "tasks.json";
+			}
 			else {
 				string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "timer");
 				if (!Directory.Exists(path))
 					Directory.CreateDirectory(path);
 				this.taskFile = Path.Combine(path, "tasks.json");
+				this.alarmFile = "alarm.wav";
 			}
+
+			if (File.Exists("alarm.wav"))
+				this.alarmFile = "alarm.wav";
+			else
+				this.alarmFile = "..\\..\\alarm.wav";
 		}
 
 		public void SaveTasks(TaskList.SerializedForm serializedForm) {

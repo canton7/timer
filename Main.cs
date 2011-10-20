@@ -29,7 +29,7 @@ namespace timer {
 			this.taskList = new TaskList(this.fileHandler.LoadTasks());
 			this.populateProjects();
 
-			this.alarm = new SoundPlayer("../../alarm.wav");
+			this.alarm = new SoundPlayer(this.fileHandler.AlarmFile);
         }
 
 		private void setButtonEnabled() {

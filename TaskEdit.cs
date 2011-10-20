@@ -107,5 +107,9 @@ namespace timer {
 			this.task.Description = this.textBoxDescription.Text;
 			this.task.ExpectedTime = this.dateTimePickerExpectedDuration.Value - new DateTime(1970, 1, 1, 0, 0, 0);
 		}
+
+		private void buttonNow_Click(object sender, EventArgs e) {
+			this.dateTimePickerFrom.Value = DateTime.Now;
+		}
 	}
 }

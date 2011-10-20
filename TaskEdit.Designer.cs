@@ -41,6 +41,7 @@
 			this.dateTimePickerExpectedDuration = new System.Windows.Forms.DateTimePicker();
 			this.label5 = new System.Windows.Forms.Label();
 			this.labelTotalDuration = new System.Windows.Forms.Label();
+			this.buttonNow = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// comboBoxProject
@@ -219,6 +220,16 @@
 			this.labelTotalDuration.TabIndex = 11;
 			this.labelTotalDuration.Text = "00:00:00";
 			// 
+			// buttonNow
+			// 
+			this.buttonNow.Location = new System.Drawing.Point(215, 291);
+			this.buttonNow.Name = "buttonNow";
+			this.buttonNow.Size = new System.Drawing.Size(41, 20);
+			this.buttonNow.TabIndex = 12;
+			this.buttonNow.Text = "Now";
+			this.buttonNow.UseVisualStyleBackColor = true;
+			this.buttonNow.Click += new System.EventHandler(this.buttonNow_Click);
+			// 
 			// TaskEdit
 			// 
 			this.AcceptButton = this.buttonSave;
@@ -226,6 +237,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.buttonCancel;
 			this.ClientSize = new System.Drawing.Size(276, 406);
+			this.Controls.Add(this.buttonNow);
 			this.Controls.Add(this.labelTotalDuration);
 			this.Controls.Add(this.buttonCancel);
 			this.Controls.Add(this.buttonSave);
@@ -270,5 +282,6 @@
 		private System.Windows.Forms.DateTimePicker dateTimePickerExpectedDuration;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label labelTotalDuration;
+		private System.Windows.Forms.Button buttonNow;
 	}
 }

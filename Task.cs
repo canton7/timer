@@ -125,7 +125,7 @@ namespace timer {
 			SerializedForm serializedForm = new SerializedForm();
 			serializedForm.Project = this.Project;
 			serializedForm.Description = this.Description;
-			serializedForm.ExpectedTime = this.expectedTime.ToString("hh':'mm");
+			serializedForm.ExpectedTime = this.expectedTime.ToString("hh':'mm':'ss");
 			serializedForm.State = this.state;
 			serializedForm.SoundedAlarm = this.SoundedAlarm;
 			List<WorkTime.SerializedForm> workTimes = new List<WorkTime.SerializedForm>();
@@ -142,7 +142,7 @@ namespace timer {
 			this.state = serializedForm.State;
 			this.SoundedAlarm = serializedForm.SoundedAlarm;
 			string[] parts = serializedForm.ExpectedTime.Split(':');
-			this.expectedTime = new TimeSpan(int.Parse(parts[0]), int.Parse(parts[1]), 0);
+			this.expectedTime = new TimeSpan(int.Parse(parts[0]), int.Parse(parts[1]), int.Parse(parts[2]));
 			foreach (WorkTime.SerializedForm serializedWork in serializedForm.WorkTimes) {
 				this.workTimes.Add(new WorkTime(serializedWork));
 			}

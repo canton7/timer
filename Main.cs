@@ -239,9 +239,11 @@ namespace timer {
 
 		private void buttonSave_Click(object sender, EventArgs e) {
 			this.createTask();
-			// Set fields to what they were before
-			this.comboBoxProject.Text = this.taskList.CurrentProject;
-			this.textBoxDescription.Text = this.taskList.CurrentTask.Description;
+			// Set fields to what they were before, if any
+			if (this.taskList.HaveTasks) {
+				this.comboBoxProject.Text = this.taskList.CurrentProject;
+				this.textBoxDescription.Text = this.taskList.CurrentTask.Description;
+			}
 		}
 
 		private void tabControl1_SelectedIndexChanged(object sender, EventArgs e) {

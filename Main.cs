@@ -187,10 +187,15 @@ namespace timer {
 			this.stopTask();
 			// Copy the task so they don't edit the original copy
 			Task taskNew = new Task(task.Serialize());
+			// Don't display on top any more, otherwise forces self on top of new window
+			bool wasOnTop = this.TopMost;
+			this.TopMost = false;
 			using (TaskEdit taskEdit = new TaskEdit(this.taskList, taskNew)) {
 				DialogResult result = taskEdit.ShowDialog();
-				if (result != DialogResult.OK)
+				if (result != DialogResult.OK) {
+					this.TopMost = wasOnTop;
 					return;
+				}
 				this.taskList.ReplaceTask(task_index, taskEdit.Task);
 
 				this.populateProjects();
@@ -198,6 +203,7 @@ namespace timer {
 				this.comboBoxProjectTasks.SelectedValue = taskEdit.Task.Project;
 			}
 			this.fileHandler.SaveTasks(this.taskList.Serialize());
+			this.TopMost = wasOnTop;
 		}
 
 		private void startAlarm() {

@@ -44,7 +44,7 @@ namespace timer {
 		}
 
 		public TaskList.SerializedForm LoadTasks() {
-			if (!File.Exists("tasks.json"))
+			if (!File.Exists(this.taskFile))
 				return null;
 			StreamReader sr = new StreamReader(this.taskFile);
 			TaskList.SerializedForm serializedForm = JsonMapper.ToObject<TaskList.SerializedForm>(sr.ReadToEnd());

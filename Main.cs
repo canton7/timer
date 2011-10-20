@@ -311,5 +311,16 @@ namespace timer {
 				return;
 			this.deleteTask(this.listBoxTasksContents[index]);
 		}
+
+		private void checkBoxAlarm_CheckedChanged(object sender, EventArgs e) {
+			this.settings.Alarm = (sender as CheckBox).Checked;
+			this.fileHandler.SaveSettings(this.settings.Serialize());
+		}
+
+		private void checkBoxOnTop_CheckedChanged(object sender, EventArgs e) {
+			this.settings.OnTop = (sender as CheckBox).Checked;
+			this.fileHandler.SaveSettings(this.settings.Serialize());
+			this.TopMost = this.settings.OnTop;
+		}
     }
 }

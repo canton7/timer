@@ -55,9 +55,13 @@
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.timerAlarm = new System.Windows.Forms.Timer(this.components);
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.checkBoxAlarm = new System.Windows.Forms.CheckBox();
+			this.checkBoxOnTop = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPageTime.SuspendLayout();
 			this.tabPageTasks.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -67,6 +71,7 @@
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPageTime);
 			this.tabControl1.Controls.Add(this.tabPageTasks);
+			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
@@ -336,6 +341,40 @@
 			this.timerAlarm.Interval = 250;
 			this.timerAlarm.Tick += new System.EventHandler(this.timerAlarm_Tick);
 			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.checkBoxOnTop);
+			this.tabPage1.Controls.Add(this.checkBoxAlarm);
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(230, 209);
+			this.tabPage1.TabIndex = 2;
+			this.tabPage1.Text = "Settings";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// checkBoxAlarm
+			// 
+			this.checkBoxAlarm.AutoSize = true;
+			this.checkBoxAlarm.Location = new System.Drawing.Point(9, 19);
+			this.checkBoxAlarm.Name = "checkBoxAlarm";
+			this.checkBoxAlarm.Size = new System.Drawing.Size(174, 17);
+			this.checkBoxAlarm.TabIndex = 0;
+			this.checkBoxAlarm.Text = "Sound alarm when task time up";
+			this.checkBoxAlarm.UseVisualStyleBackColor = true;
+			this.checkBoxAlarm.CheckedChanged += new System.EventHandler(this.checkBoxAlarm_CheckedChanged);
+			// 
+			// checkBoxOnTop
+			// 
+			this.checkBoxOnTop.AutoSize = true;
+			this.checkBoxOnTop.Location = new System.Drawing.Point(9, 43);
+			this.checkBoxOnTop.Name = "checkBoxOnTop";
+			this.checkBoxOnTop.Size = new System.Drawing.Size(125, 17);
+			this.checkBoxOnTop.TabIndex = 1;
+			this.checkBoxOnTop.Text = "Show window on top";
+			this.checkBoxOnTop.UseVisualStyleBackColor = true;
+			this.checkBoxOnTop.CheckedChanged += new System.EventHandler(this.checkBoxOnTop_CheckedChanged);
+			// 
 			// Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -346,13 +385,14 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Main";
 			this.Text = "Timer";
-			this.TopMost = true;
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPageTime.ResumeLayout(false);
 			this.tabPageTime.PerformLayout();
 			this.tabPageTasks.ResumeLayout(false);
 			this.tabPageTasks.PerformLayout();
+			this.tabPage1.ResumeLayout(false);
+			this.tabPage1.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -384,6 +424,9 @@
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ProgressBar progressBar;
 		private System.Windows.Forms.Timer timerAlarm;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.CheckBox checkBoxOnTop;
+		private System.Windows.Forms.CheckBox checkBoxAlarm;
     }
 }
 

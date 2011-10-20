@@ -110,8 +110,10 @@ namespace timer {
 		}
 
 		private void populateTaskInfo() {
-			this.textBoxDescription.Text = this.taskList.CurrentTask.Description;
-			this.dateTimePickerDuration.Value = new DateTime(1970, 1, 1, 0, 0, 0) + this.taskList.CurrentTask.ExpectedTime;
+			if (this.taskList.HaveTasks) {
+				this.textBoxDescription.Text = this.taskList.CurrentTask.Description;
+				this.dateTimePickerDuration.Value = new DateTime(1970, 1, 1, 0, 0, 0) + this.taskList.CurrentTask.ExpectedTime;
+			}
 		}
 
 		private void populateTaskList() {

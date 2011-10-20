@@ -201,9 +201,12 @@ namespace timer {
 		}
 
 		private void startAlarm() {
+			this.taskList.CurrentTask.SoundedAlarm = true;
+			if (!this.settings.Alarm)
+				return;
+
 			this.alarm.PlayLooping();
 			// Start the alarm timer
-			this.taskList.CurrentTask.SoundedAlarm = true;
 			this.timerAlarm.Start();
 			this.alarmSounding = true;
 		}

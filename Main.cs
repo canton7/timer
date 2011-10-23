@@ -313,6 +313,7 @@ namespace timer {
 
 		private void comboBoxProjectTasks_SelectedIndexChanged(object sender, EventArgs e) {
 			ComboBox senderbox = sender as ComboBox;
+			this.labelDurationTotalTasks.Text = this.taskList.GetProjectTime(senderbox.Text).ToString("hh':'mm':'ss");
 			this.populateTaskList();
 		}
 

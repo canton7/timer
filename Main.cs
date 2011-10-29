@@ -237,6 +237,7 @@ namespace timer {
 		private void initSettings() {
 			this.checkBoxAlarm.Checked = this.settings.Alarm;
 			this.checkBoxOnTop.Checked = this.settings.OnTop;
+            this.checkBoxIcon.Checked = this.settings.Icon;
 		}
 
 		private void updateIconText() {

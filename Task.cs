@@ -147,6 +147,9 @@ namespace timer {
 			serializedForm.SoundedAlarm = this.SoundedAlarm;
 			List<WorkTime.SerializedForm> workTimes = new List<WorkTime.SerializedForm>();
 			foreach (WorkTime workTime in this.workTimes) {
+                // If task is in progress, don't save it yet
+                if (!workTime.StoppedAt.HasValue)
+                    continue;
 				workTimes.Add(workTime.Serialize());
 			}
 			serializedForm.WorkTimes = workTimes.ToArray();
